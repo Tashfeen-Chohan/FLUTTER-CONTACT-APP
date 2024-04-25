@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
+import 'package:login_app/src/features/auth/screens/login/login_screen.dart';
 import 'package:login_app/src/features/auth/screens/on_boarding/on_boarding_screen.dart';
 import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:login_app/src/utils/theme/theme.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       darkTheme: MyAppTheme.darkTheme,
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: const WelcomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }

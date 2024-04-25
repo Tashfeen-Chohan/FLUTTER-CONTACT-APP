@@ -15,7 +15,7 @@ class WelcomeScreen extends StatelessWidget {
           children: [
             Image(
               image: const AssetImage(tWelomeScreenImg),
-              height: height * 0.4,
+              height: height * 0.5,
             ),
             Column(
               children: [
