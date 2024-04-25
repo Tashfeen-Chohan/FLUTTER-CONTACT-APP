@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/src/features/auth/screens/forget_password/forget_password_options/forget_password_bottom_sheet.dart';
 
 class LoginFormWidget extends StatelessWidget {
   const LoginFormWidget({
@@ -36,7 +37,9 @@ class LoginFormWidget extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 child: const Text("Forget Password?"),
-                onPressed: () {},
+                onPressed: () {
+                  ForgetPasswordScreen.showModelBottomSheet(context);
+                },
               ),
             ),
             SizedBox(

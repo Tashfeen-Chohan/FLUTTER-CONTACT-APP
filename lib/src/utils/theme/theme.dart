@@ -17,11 +17,9 @@ class MyAppTheme {
       ),
       bodyLarge: TextStyle(
         color: Colors.black,
-        fontWeight: FontWeight.bold,
       ),
       bodyMedium: TextStyle(
         color: Colors.black,
-        fontWeight: FontWeight.bold,
       ),
     ),
   );
