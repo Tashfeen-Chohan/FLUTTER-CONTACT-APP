@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/src/constants/image_strings.dart';
+import 'package:login_app/src/common/outline_icon_button_widget.dart';
 import 'package:login_app/src/features/auth/screens/signup/signup_screen.dart';
 
 class LoginFooterWidget extends StatelessWidget {
@@ -24,28 +24,7 @@ class LoginFooterWidget extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton.icon(
-            onPressed: () {},
-            icon: Image.asset(
-              tGoogleLogo,
-              width: 30,
-            ),
-            label: const Text(
-              "Sign-In with Google",
-              style: TextStyle(color: Colors.black),
-            ),
-            style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
-            ),
-          ),
-        ),
+        const OutLineIconButtonWidget(),
         const SizedBox(
           height: 10,
         ),

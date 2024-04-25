@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/src/features/auth/screens/signup/widgets/signup_textfield_widget.dart';
+import 'package:login_app/src/common/elevated_button_widget.dart';
+import 'package:login_app/src/common/textfield_widget.dart';
 
 class SignupFormWidget extends StatelessWidget {
   const SignupFormWidget({
@@ -8,58 +9,49 @@ class SignupFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
+    return const Form(
         child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          const SignupTextfieldWidget(
+          TextfieldWidget(
             label: "Username",
             hintText: "Full Name",
-            prefixIcon: Icons.verified_user_rounded,
+            prefixIcon: Icons.verified_user_outlined,
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
-          const SignupTextfieldWidget(
+          TextfieldWidget(
             label: "Email",
             hintText: "E-Mail",
-            prefixIcon: Icons.email,
+            prefixIcon: Icons.email_outlined,
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
-          const SignupTextfieldWidget(
+          TextfieldWidget(
             label: "Phone No",
             hintText: "Phone No",
             prefixIcon: Icons.numbers,
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
-          const SignupTextfieldWidget(
+          TextfieldWidget(
             label: "Password",
             hintText: "********",
             prefixIcon: Icons.fingerprint,
             suffixIcon: Icons.remove_red_eye,
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                backgroundColor: Colors.black,
-                shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-              ),
-              child: const Text("SIGNUP"),
-            ),
-          )
+          ElevatedButtonWidget(
+            backgroundColor: Colors.black,
+            foregroundColor: Colors.white,
+            text: "SIGNUP",
+          ),
         ],
       ),
     ));

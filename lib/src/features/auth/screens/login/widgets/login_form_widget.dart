@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/src/common/elevated_button_widget.dart';
+import 'package:login_app/src/common/textfield_widget.dart';
 import 'package:login_app/src/features/auth/screens/forget_password/forget_password_options/forget_password_bottom_sheet.dart';
 
 class LoginFormWidget extends StatelessWidget {
@@ -13,25 +15,19 @@ class LoginFormWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                label: Text("Email"),
-                prefixIcon: Icon(Icons.email),
-                hintText: "YOUR EMAIL",
-                border: OutlineInputBorder(),
-              ),
+            const TextfieldWidget(
+              label: "EMAIL",
+              hintText: "Your Email",
+              prefixIcon: Icons.email_outlined,
             ),
             const SizedBox(
               height: 15,
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                label: Text("PASSWORD"),
-                prefixIcon: Icon(Icons.fingerprint),
-                suffixIcon: Icon(Icons.remove_red_eye),
-                hintText: "********",
-                border: OutlineInputBorder(),
-              ),
+            const TextfieldWidget(
+              label: "PASSWORD",
+              hintText: "********",
+              prefixIcon: Icons.fingerprint,
+              suffixIcon: Icons.remove_red_eye,
             ),
             Align(
               alignment: Alignment.centerRight,
@@ -42,20 +38,11 @@ class LoginFormWidget extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  backgroundColor: Colors.black,
-                  shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                ),
-                child: const Text("LOGIN"),
-              ),
-            )
+            const ElevatedButtonWidget(
+              backgroundColor: Colors.black,
+              foregroundColor: Colors.white,
+              text: "LOGIN",
+            ),
           ],
         ),
       ),

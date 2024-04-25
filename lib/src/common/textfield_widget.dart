@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SignupTextfieldWidget extends StatelessWidget {
-  const SignupTextfieldWidget({
+class TextfieldWidget extends StatelessWidget {
+  const TextfieldWidget({
     super.key,
     required this.label,
     required this.hintText,
@@ -17,7 +17,7 @@ class SignupTextfieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        label: Text(label),
+        label: Text(label.toUpperCase()),
         hintText: hintText,
         prefixIcon: Icon(prefixIcon),
         suffix: suffixIcon != null ? Icon(suffixIcon) : null,
