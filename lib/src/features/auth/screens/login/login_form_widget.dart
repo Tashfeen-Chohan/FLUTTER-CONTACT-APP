@@ -9,7 +9,7 @@ class LoginFormWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 30),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         child: Column(
           children: [
             TextFormField(
@@ -28,7 +28,7 @@ class LoginFormWidget extends StatelessWidget {
                 label: Text("PASSWORD"),
                 prefixIcon: Icon(Icons.fingerprint),
                 suffixIcon: Icon(Icons.remove_red_eye),
-                hintText: "YOUR PASSWORD",
+                hintText: "********",
                 border: OutlineInputBorder(),
               ),
             ),
@@ -45,7 +45,7 @@ class LoginFormWidget extends StatelessWidget {
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   backgroundColor: Colors.black,
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10))),

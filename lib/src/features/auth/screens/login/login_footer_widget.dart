@@ -12,7 +12,7 @@ class LoginFooterWidget extends StatelessWidget {
       children: [
         const Text("OR"),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         SizedBox(
           width: double.infinity,
@@ -27,7 +27,7 @@ class LoginFooterWidget extends StatelessWidget {
               style: TextStyle(color: Colors.black),
             ),
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 15),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(10),
@@ -35,7 +35,26 @@ class LoginFooterWidget extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        TextButton(
+          onPressed: () {},
+          child: const Text.rich(
+            TextSpan(
+              style: TextStyle(color: Colors.black),
+              text: "Don't have an account?",
+              children: [
+                TextSpan(
+                    text: "Signup",
+                    style: TextStyle(
+                      color: Colors.blue,
+                    )),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
