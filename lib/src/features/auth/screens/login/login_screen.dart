@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/src/features/auth/screens/login/login_footer_widget.dart';
-import 'package:login_app/src/features/auth/screens/login/login_form_widget.dart';
-import 'package:login_app/src/features/auth/screens/login/login_header_widget.dart';
+import 'package:login_app/src/features/auth/screens/login/widgets/login_footer_widget.dart';
+import 'package:login_app/src/features/auth/screens/login/widgets/login_form_widget.dart';
+import 'package:login_app/src/features/auth/screens/login/widgets/login_header_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

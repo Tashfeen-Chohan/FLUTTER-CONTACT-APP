@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_app/src/constants/image_strings.dart';
+import 'package:login_app/src/features/auth/screens/signup/signup_screen.dart';
 
 class LoginFooterWidget extends StatelessWidget {
   const LoginFooterWidget({
@@ -8,6 +9,15 @@ class LoginFooterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void navigateToSignupScreen() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SignupScreen(),
+        ),
+      );
+    }
+
     return Column(
       children: [
         const Text("OR"),
@@ -40,12 +50,15 @@ class LoginFooterWidget extends StatelessWidget {
           height: 10,
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: navigateToSignupScreen,
           child: const Text.rich(
             TextSpan(
               style: TextStyle(color: Colors.black),
-              text: "Don't have an account?",
               children: [
+                TextSpan(
+                  text: "Don't have an account?",
+                ),
+                WidgetSpan(child: SizedBox(width: 5)),
                 TextSpan(
                     text: "Signup",
                     style: TextStyle(
