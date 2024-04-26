@@ -38,10 +38,9 @@ class LoginFormWidget extends StatelessWidget {
                 },
               ),
             ),
-            const ElevatedButtonWidget(
-              backgroundColor: Colors.black,
-              foregroundColor: Colors.white,
+            ElevatedButtonWidget(
               text: "LOGIN",
+              onPressed: () {},
             ),
           ],
         ),

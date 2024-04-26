@@ -34,6 +34,7 @@ class FormHeaderWidget extends StatelessWidget {
         Text(
           subTitle,
           style: Theme.of(context).textTheme.bodyMedium,
+          textAlign: TextAlign.center,
         )
       ],
     );

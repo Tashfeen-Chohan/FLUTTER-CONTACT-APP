@@ -6,3 +6,4 @@ const String tOnBoardingImg3 = "assets/images/on_boarding_images/img3.jpg";
 const String tWelomeScreenImg = "assets/images/welcome.jpg";
 const String tSignupImg = "assets/images/signup_img.jpg";
 const String tGoogleLogo = "assets/images/google_logo.png";
+const String tLogo = "assets/images/logo.png";

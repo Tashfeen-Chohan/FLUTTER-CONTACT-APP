@@ -15,10 +15,17 @@ class MyAppTheme {
         color: Colors.black87,
         fontWeight: FontWeight.bold,
       ),
+      headlineSmall: TextStyle(
+        color: Colors.black87,
+        fontWeight: FontWeight.bold,
+      ),
       bodyLarge: TextStyle(
         color: Colors.black,
       ),
       bodyMedium: TextStyle(
+        color: Colors.black,
+      ),
+      bodySmall: TextStyle(
         color: Colors.black,
       ),
     ),

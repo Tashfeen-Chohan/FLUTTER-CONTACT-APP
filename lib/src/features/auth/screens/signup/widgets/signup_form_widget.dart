@@ -9,48 +9,47 @@ class SignupFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Form(
+    return Form(
         child: Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          TextfieldWidget(
+          const TextfieldWidget(
             label: "Username",
             hintText: "Full Name",
             prefixIcon: Icons.verified_user_outlined,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          TextfieldWidget(
+          const TextfieldWidget(
             label: "Email",
             hintText: "E-Mail",
             prefixIcon: Icons.email_outlined,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          TextfieldWidget(
+          const TextfieldWidget(
             label: "Phone No",
             hintText: "Phone No",
             prefixIcon: Icons.numbers,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          TextfieldWidget(
+          const TextfieldWidget(
             label: "Password",
             hintText: "********",
             prefixIcon: Icons.fingerprint,
             suffixIcon: Icons.remove_red_eye,
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           ElevatedButtonWidget(
-            backgroundColor: Colors.black,
-            foregroundColor: Colors.white,
             text: "SIGNUP",
+            onPressed: () {},
           ),
         ],
       ),

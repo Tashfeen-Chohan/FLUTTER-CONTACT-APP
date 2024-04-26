@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/src/features/auth/screens/forget_password/forget_password_mail/forget_password_mail.dart';
 import 'package:login_app/src/features/auth/screens/forget_password/forget_password_options/forget_password_btn_widget.dart';
 
-class ForgetPasswordScreen{
+class ForgetPasswordScreen {
   static Future<dynamic> showModelBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
@@ -29,7 +30,12 @@ class ForgetPasswordScreen{
                 icon: Icons.email_outlined,
                 title: "E-Main",
                 subtile: "Reset via E-Mail verification",
-                onTap: () {},
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const ForgetPasswordMail();
+                  }));
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -46,5 +52,4 @@ class ForgetPasswordScreen{
       },
     );
   }
-
 }

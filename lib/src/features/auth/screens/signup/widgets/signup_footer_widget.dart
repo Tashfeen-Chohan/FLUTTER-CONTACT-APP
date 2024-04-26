@@ -37,10 +37,11 @@ class SignupFooterWidget extends StatelessWidget {
                 TextSpan(text: "Already have an account?"),
                 WidgetSpan(child: SizedBox(width: 5)),
                 TextSpan(
-                    text: "LOGIN",
-                    style: TextStyle(
-                      color: Colors.blue,
-                    )),
+                  text: "LOGIN",
+                  style: TextStyle(
+                    color: Colors.blue,
+                  ),
+                ),
               ],
             ),
           ),
