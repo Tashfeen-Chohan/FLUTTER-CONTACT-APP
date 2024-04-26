@@ -3,7 +3,7 @@ import 'package:login_app/src/features/core/screens/dashboard/widgets/categories
 import 'package:login_app/src/features/core/screens/dashboard/widgets/dashboard_appbar.dart';
 import 'package:login_app/src/features/core/screens/dashboard/widgets/header.dart';
 import 'package:login_app/src/features/core/screens/dashboard/widgets/search_box.dart';
-import 'package:login_app/src/features/core/screens/dashboard/widgets/top_courses.dart';
+import 'package:login_app/src/features/core/screens/dashboard/widgets/courses/top_courses.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -21,22 +21,18 @@ class Dashboard extends StatelessWidget {
             children: [
               // HEADER
               DashboardHeader(textTheme: textTheme),
-
               // SEARCH BOX
               const DashboardSearchBox(),
               const SizedBox(
                 height: 30,
               ),
-
               // CATEGORIES
               const DashboardCategories(),
-
               const SizedBox(
                 height: 40,
               ),
-
               // TOP COURSES
-              DashboardTopCourses(textTheme: textTheme)
+              const DashboardTopCourses()
             ],
           ),
         ),

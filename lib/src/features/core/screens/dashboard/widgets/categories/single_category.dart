@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/src/features/core/models/category_model.dart';
 
 class DashboardSingleCategory extends StatelessWidget {
-  const DashboardSingleCategory({
-    super.key,
-    required this.iconText,
-    required this.title,
-    required this.subTitle,
-  });
+  const DashboardSingleCategory({super.key, required this.model});
 
-  final String iconText, title, subTitle;
+  final CategoryModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,7 @@ class DashboardSingleCategory extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                iconText,
+                model.title,
                 style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -43,7 +39,7 @@ class DashboardSingleCategory extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  model.heading,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
@@ -52,7 +48,7 @@ class DashboardSingleCategory extends StatelessWidget {
                 ),
                 Text(
                   overflow: TextOverflow.ellipsis,
-                  subTitle,
+                  model.subHeading,
                 ),
               ],
             ),
