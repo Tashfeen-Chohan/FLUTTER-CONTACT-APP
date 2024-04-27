@@ -16,7 +16,6 @@ class AuthRepository extends GetxController {
   void onReady() {
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
-
     ever(firebaseUser, _setInitialScreen);
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 
 class DashboardAppbar extends StatelessWidget implements PreferredSize {
   const DashboardAppbar({
@@ -18,7 +19,7 @@ class DashboardAppbar extends StatelessWidget implements PreferredSize {
       centerTitle: true,
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: _handleLogout,
           icon: const Icon(
             Icons.person_outline,
             size: 30,
@@ -33,4 +34,8 @@ class DashboardAppbar extends StatelessWidget implements PreferredSize {
 
   @override
   Size get preferredSize => const Size.fromHeight(50);
+
+  void _handleLogout() {
+    AuthRepository.instance.signOut();
+  }
 }
