@@ -11,7 +11,7 @@ class DashboardSingleTopCourse extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return SizedBox(
       height: 200,
-      width: MediaQuery.of(context).size.width * 0.8,
+      width: MediaQuery.of(context).size.width * 0.9,
       child: Container(
         padding: const EdgeInsets.all(20),
         margin: const EdgeInsets.only(right: 20),
