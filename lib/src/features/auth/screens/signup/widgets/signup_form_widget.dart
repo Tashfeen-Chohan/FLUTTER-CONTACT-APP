@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/common/textfield_widget.dart';
 import 'package:login_app/src/features/auth/controllers/signup_controller.dart';
+import 'package:login_app/src/features/auth/screens/forget_password/forget_password_otp/otp_screen.dart';
 
 class SignupFormWidget extends StatelessWidget {
   const SignupFormWidget({
@@ -61,10 +62,14 @@ class SignupFormWidget extends StatelessWidget {
                 onPressed: () => {
                   if (formKey.currentState!.validate())
                     {
-                      signupController.registerUser(
-                        signupController.email.text.trim(),
-                        signupController.password.text.trim(),
-                      )
+                      // signupController.registerUser(
+                      //   signupController.email.text.trim(),
+                      //   signupController.password.text.trim(),
+                      // )
+                      signupController.phoneAuthentication(
+                        signupController.phoneNo.text.trim(),
+                      ),
+                      Get.to(const OtpScreen())
                     }
                 },
               ),
