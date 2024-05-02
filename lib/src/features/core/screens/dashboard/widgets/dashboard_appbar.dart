@@ -1,4 +1,8 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 
 class DashboardAppbar extends StatelessWidget implements PreferredSize {
@@ -19,14 +23,14 @@ class DashboardAppbar extends StatelessWidget implements PreferredSize {
       centerTitle: true,
       actions: [
         IconButton(
-          onPressed: _handleLogout,
+          onPressed: _navigateToProfile,
           icon: const Icon(
             Icons.person_outline,
             size: 30,
           ),
         ),
       ],
-    );
+    );  
   }
 
   @override
@@ -35,7 +39,11 @@ class DashboardAppbar extends StatelessWidget implements PreferredSize {
   @override
   Size get preferredSize => const Size.fromHeight(50);
 
-  void _handleLogout() {
-    AuthRepository.instance.signOut();
+  void _navigateToProfile() {
+    Get.to(() => const ProfileScreen());
   }
+
+  // void _handleLogout() {
+  //   AuthRepository.instance.signOut();
+  // }
 }

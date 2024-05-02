@@ -7,3 +7,4 @@ const String tWelomeScreenImg = "assets/images/welcome.jpg";
 const String tSignupImg = "assets/images/signup_img.jpg";
 const String tGoogleLogo = "assets/images/google_logo.png";
 const String tLogo = "assets/images/logo.png";
+const String tProfile = "assets/images/profile.jpg";

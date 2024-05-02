@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
@@ -62,14 +64,14 @@ class SignupFormWidget extends StatelessWidget {
                 onPressed: () => {
                   if (formKey.currentState!.validate())
                     {
-                      // signupController.registerUser(
-                      //   signupController.email.text.trim(),
-                      //   signupController.password.text.trim(),
-                      // )
-                      signupController.phoneAuthentication(
-                        signupController.phoneNo.text.trim(),
-                      ),
-                      Get.to(() => const OtpScreen())
+                      signupController.registerUser(
+                        signupController.email.text.trim(),
+                        signupController.password.text.trim(),
+                      )
+                      // signupController.phoneAuthentication(
+                      //   signupController.phoneNo.text.trim(),
+                      // ),
+                      // Get.to(() => const OtpScreen())
                     }
                 },
               ),

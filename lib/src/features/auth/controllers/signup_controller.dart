@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
@@ -11,12 +10,17 @@ class SignupController extends GetxController {
   final fullName = TextEditingController();
   final phoneNo = TextEditingController();
 
-  void registerUser (String email, String password){
-    AuthRepository.instance.createUserWithEmailAndPassword(email, password);
+  void registerUser(String email, String password) {
+    String? error = AuthRepository.instance
+        .createUserWithEmailAndPassword(email, password) as String?;
+    if (error != null) {
+      Get.showSnackbar(GetSnackBar(
+        message: error.toString(),
+      ));
+    }
   }
 
-  void phoneAuthentication(String phoneNo){
+  void phoneAuthentication(String phoneNo) {
     AuthRepository.instance.phoneAuthentication(phoneNo);
   }
-
 }
