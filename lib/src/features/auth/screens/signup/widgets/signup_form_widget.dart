@@ -69,7 +69,7 @@ class SignupFormWidget extends StatelessWidget {
                       signupController.phoneAuthentication(
                         signupController.phoneNo.text.trim(),
                       ),
-                      Get.to(const OtpScreen())
+                      Get.to(() => const OtpScreen())
                     }
                 },
               ),

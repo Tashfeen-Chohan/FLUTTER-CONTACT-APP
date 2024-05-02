@@ -34,8 +34,8 @@ class AuthRepository extends GetxController {
         password: password,
       );
       firebaseUser.value != null
-          ? Get.offAll(const Dashboard())
-          : Get.offAll(const WelcomeScreen());
+          ? Get.offAll(() => const Dashboard())
+          : Get.offAll(() => const WelcomeScreen());
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);
       print("Firebase Auth Exception - ${ex.message}");

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/features/auth/controllers/otp_controller.dart';
 
@@ -10,6 +11,7 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final otpController = Get.put(OtpController());
     String otp = "";
     return Scaffold(
       body: SingleChildScrollView(
@@ -41,20 +43,21 @@ class OtpScreen extends StatelessWidget {
                 height: 30,
               ),
               OtpTextField(
-                  numberOfFields: 6,
-                  fillColor: Colors.black.withOpacity(0.1),
-                  filled: true,
-                  onSubmit: (code) {
-                    otp = code;
-                    OtpController.instance.verifyOtp(otp);
-                  }),
+                numberOfFields: 6,
+                fillColor: Colors.black.withOpacity(0.1),
+                filled: true,
+                onSubmit: (code) {
+                  otp = code;
+                  otpController.verifyOtp(otp);
+                },
+              ),
               const SizedBox(
                 height: 30,
               ),
               ElevatedButtonWidget(
                 text: "Next",
                 onPressed: () {
-                  OtpController.instance.verifyOtp(otp);
+                  otpController.verifyOtp(otp);
                 },
               )
             ],

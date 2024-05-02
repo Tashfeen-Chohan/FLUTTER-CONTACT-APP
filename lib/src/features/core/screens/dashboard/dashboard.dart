@@ -24,7 +24,7 @@ class Dashboard extends StatelessWidget {
               // SEARCH BOX
               const DashboardSearchBox(),
               const SizedBox(
-                height: 30,
+                height: 50,
               ),
               // CATEGORIES
               const DashboardCategories(),

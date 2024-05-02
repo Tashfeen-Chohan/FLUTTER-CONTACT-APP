@@ -83,4 +83,5 @@ class DefaultFirebaseOptions {
     authDomain: 'flutter-login-app-e4df0.firebaseapp.com',
     storageBucket: 'flutter-login-app-e4df0.appspot.com',
   );
+
 }
