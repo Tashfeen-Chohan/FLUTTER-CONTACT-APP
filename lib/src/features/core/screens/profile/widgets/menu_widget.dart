@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:login_app/src/constants/colors.dart';
 
@@ -22,16 +21,17 @@ class ProfileMenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Container(
-          height: 40,
-          width: 40,
-          decoration: BoxDecoration(
-            color: tAccentColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: Icon(
-            icon,
-            color: tAccentColor,
-          )),
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
+          color: tAccentColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: Icon(
+          icon,
+          color: tAccentColor,
+        ),
+      ),
       title: Text(
         title,
         style: TextStyle(

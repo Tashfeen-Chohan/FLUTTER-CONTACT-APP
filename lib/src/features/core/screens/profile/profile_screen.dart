@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/src/common/elevated_button_widget.dart';
-import 'package:login_app/src/constants/image_strings.dart';
+import 'package:get/get.dart';
+import 'package:login_app/src/features/core/screens/profile/widgets/profile_header.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/menu_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -11,10 +11,13 @@ class ProfileScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: const Icon(Icons.arrow_back),
+        leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: Text(
           "Profile",
-          style: textTheme.headlineLarge,
+          style: textTheme.headlineMedium,
         ),
         centerTitle: true,
       ),
@@ -23,34 +26,7 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.all(30),
           child: Column(
             children: [
-              const CircleAvatar(
-                radius: 70,
-                foregroundImage: AssetImage(tProfile),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Tashfeen Chohan",
-                style: textTheme.headlineMedium,
-              ),
-              Text(
-                "chohantashfeen@gmail.com",
-                style: textTheme.bodyMedium,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButtonWidget(
-                text: "Edit Profile",
-                width: 150,
-                onPressed: () {},
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Divider(),
-              const SizedBox(height: 20),
+              const ProfileHeaderWidget(),
               // MENU
               ProfileMenuWidget(
                 icon: Icons.settings,
