@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/constants/image_strings.dart';
+import 'package:login_app/src/features/core/screens/profile/widgets/menu_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -40,17 +41,45 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
+              ElevatedButtonWidget(
+                text: "Edit Profile",
                 width: 150,
-                child: ElevatedButtonWidget(
-                  text: "Edit Profile",
-                  onPressed: () {},
-                ),
+                onPressed: () {},
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Divider()
+              const Divider(),
+              const SizedBox(height: 20),
+              // MENU
+              ProfileMenuWidget(
+                icon: Icons.settings,
+                title: "Settings",
+                onTap: () {},
+              ),
+              ProfileMenuWidget(
+                icon: Icons.money,
+                title: "Billing Details",
+                onTap: () {},
+              ),
+              ProfileMenuWidget(
+                icon: Icons.supervised_user_circle_sharp,
+                title: "User Managment",
+                onTap: () {},
+              ),
+              const Divider(),
+              ProfileMenuWidget(
+                icon: Icons.info,
+                title: "Information",
+                onTap: () {},
+              ),
+              ProfileMenuWidget(
+                icon: Icons.logout_outlined,
+                title: "Logout",
+                titleColor: Colors.red,
+                endIcon: false,
+                onTap: () {},
+              ),
             ],
           ),
         ),
