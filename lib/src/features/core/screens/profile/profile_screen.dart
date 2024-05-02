@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/profile_header.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/menu_widget.dart';
+import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
+
+  void _handleLogout() {
+    AuthRepository.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                 title: "Logout",
                 titleColor: Colors.red,
                 endIcon: false,
-                onTap: () {},
+                onTap: _handleLogout,
               ),
             ],
           ),

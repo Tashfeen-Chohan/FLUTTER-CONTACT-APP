@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_app/src/common/elevated_button_widget.dart';
-import 'package:login_app/src/common/textfield_widget.dart';
 import 'package:login_app/src/constants/image_strings.dart';
+import 'package:login_app/src/features/core/screens/profile/widgets/update_profile_form.dart';
 
 class UpdateProfile extends StatelessWidget {
   const UpdateProfile({super.key});
@@ -27,6 +26,7 @@ class UpdateProfile extends StatelessWidget {
           padding: const EdgeInsets.all(30),
           child: Column(
             children: [
+              // HEADER
               Stack(
                 children: [
                   const CircleAvatar(
@@ -53,36 +53,12 @@ class UpdateProfile extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 50),
-              const TextfieldWidget(
-                label: "Username",
-                hintText: "Full Name",
-                prefixIcon: Icons.verified_user_rounded,
-              ),
-              const SizedBox(height: 15),
-              const TextfieldWidget(
-                label: "Email",
-                hintText: "Email",
-                prefixIcon: Icons.email,
-              ),
-              const SizedBox(height: 15),
-              const TextfieldWidget(
-                label: "Phone No",
-                hintText: "Phone Number",
-                prefixIcon: Icons.phone,
-              ),
-              const SizedBox(height: 15),
-              const TextfieldWidget(
-                label: "Password",
-                hintText: "********",
-                prefixIcon: Icons.fingerprint,
-                suffixIcon: Icons.remove_red_eye,
-              ),
+
+              // FORM
+              const UpdateProfileForm(),
               const SizedBox(height: 30),
-              ElevatedButtonWidget(
-                text: "Edit Profile",
-                onPressed: () {},
-              ),
-              const SizedBox(height: 30),
+
+              // FOOTER
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
