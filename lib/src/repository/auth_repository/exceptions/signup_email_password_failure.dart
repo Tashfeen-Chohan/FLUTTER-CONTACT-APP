@@ -8,15 +8,20 @@ class SignUpWithEmailAndPasswordFailure {
   factory SignUpWithEmailAndPasswordFailure.code(String code) {
     switch (code) {
       case "week-password":
-        return SignUpWithEmailAndPasswordFailure("Please enter a stronger password");
+        return SignUpWithEmailAndPasswordFailure(
+            "Please enter a stronger password");
       case "invalid-email":
-        return SignUpWithEmailAndPasswordFailure("Email is not valid or badly formated.");
+        return SignUpWithEmailAndPasswordFailure(
+            "Email is not valid or badly formated.");
       case "email-already-in-use":
-        return SignUpWithEmailAndPasswordFailure("An account already exists for that email.");
+        return SignUpWithEmailAndPasswordFailure(
+            "An account already exists for that email.");
       case "operation-not-allowed":
-        return SignUpWithEmailAndPasswordFailure("Operation is not allowed. Please contact support.");
+        return SignUpWithEmailAndPasswordFailure(
+            "Operation is not allowed. Please contact support.");
       case "user-disabled":
-        return SignUpWithEmailAndPasswordFailure("This user has been disabled. Please contact support for help.");
+        return SignUpWithEmailAndPasswordFailure(
+            "This user has been disabled. Please contact support for help.");
       default:
         return SignUpWithEmailAndPasswordFailure();
     }

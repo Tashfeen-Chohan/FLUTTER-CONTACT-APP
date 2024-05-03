@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
+import 'package:login_app/src/repository/auth_repository/exceptions/login_failure.dart';
 import 'package:login_app/src/repository/auth_repository/exceptions/signup_email_password_failure.dart';
 
 class AuthRepository extends GetxController {
@@ -46,10 +47,20 @@ class AuthRepository extends GetxController {
     return null;
   }
 
-  Future<void> signInWithEmailAndPassword(String email, String password) async {
+  Future<String?> signInWithEmailAndPassword(
+      String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (_) {}
+      
+    } on FirebaseAuthException catch (e) {
+      final ex = LoginFailure.fromCode(e.code);
+      // print("Login Code : ${e.code}");
+      return ex.message;
+    } catch (_) {
+      final ex = LoginFailure();
+      return ex.message;
+    }
+    return null;
   }
 
   Future<void> signOut() async {

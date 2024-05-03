@@ -9,6 +9,14 @@ class LoginController extends GetxController {
   final password = TextEditingController();
 
   Future<void> loginUser(String email, String password) async {
-    await AuthRepository.instance.signInWithEmailAndPassword(email, password);
+    String? error = await AuthRepository.instance
+        .signInWithEmailAndPassword(email, password);
+    if (error != null) {
+      Get.snackbar("Error", error.toString());
+    }
+    // if (error == null) {
+    //   email = "";
+    //   password = "";
+    // }
   }
 }

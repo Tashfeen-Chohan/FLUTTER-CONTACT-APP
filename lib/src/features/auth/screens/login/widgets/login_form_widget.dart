@@ -58,7 +58,5 @@ class LoginFormWidget extends StatelessWidget {
 
   _handleLogin(String email, String password) {
     LoginController.instance.loginUser(email, password);
-    LoginController.instance.email.text = "";
-    LoginController.instance.password.text = "";
   }
 }

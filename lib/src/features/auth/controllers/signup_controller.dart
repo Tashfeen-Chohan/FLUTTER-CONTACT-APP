@@ -16,6 +16,7 @@ class SignupController extends GetxController {
     if (error != null) {
       Get.snackbar("Error", error.toString());
     }
+   
   }
 
   void phoneAuthentication(String phoneNo) {
