@@ -8,7 +8,7 @@ class DashboardSearchBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
       decoration: BoxDecoration(
         border: const Border(
           left: BorderSide(width: 4),
