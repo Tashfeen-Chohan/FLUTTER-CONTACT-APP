@@ -30,7 +30,7 @@ class WelcomeButtonsWidget extends StatelessWidget {
             onPressed: navigateToSingupScreen,
             style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                shape: const RoundedRectangleBorder(),
+                shape: const StadiumBorder(),
                 side: const BorderSide(color: Colors.black),
                 foregroundColor: Colors.black),
             child: const Text(
@@ -48,9 +48,8 @@ class WelcomeButtonsWidget extends StatelessWidget {
         Expanded(
           child: ElevatedButton(
             onPressed: navigateToLogin,
-            style: OutlinedButton.styleFrom(
+            style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              shape: const RoundedRectangleBorder(),
               foregroundColor: Colors.white,
               backgroundColor: Colors.black,
             ),

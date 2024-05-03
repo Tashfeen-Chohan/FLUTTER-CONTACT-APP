@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/common/textfield_widget.dart';
 
@@ -39,7 +40,9 @@ class UpdateProfileForm extends StatelessWidget {
           const SizedBox(height: 30),
           ElevatedButtonWidget(
             text: "Edit Profile",
-            onPressed: () {},
+            onPressed: () {
+              Get.snackbar("Hello", "Tashfeen Chohan");
+            },
           ),
         ],
       ),
