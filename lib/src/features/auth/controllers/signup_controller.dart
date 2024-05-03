@@ -14,9 +14,12 @@ class SignupController extends GetxController {
     String? error = await AuthRepository.instance
         .createUserWithEmailAndPassword(email, password);
     if (error != null) {
-      Get.snackbar("Error", error.toString());
+      Get.snackbar(
+        "Error",
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
-   
   }
 
   void phoneAuthentication(String phoneNo) {

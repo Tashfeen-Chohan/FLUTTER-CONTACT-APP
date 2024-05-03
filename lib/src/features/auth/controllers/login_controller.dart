@@ -12,7 +12,11 @@ class LoginController extends GetxController {
     String? error = await AuthRepository.instance
         .signInWithEmailAndPassword(email, password);
     if (error != null) {
-      Get.snackbar("Error", error.toString());
+      Get.snackbar(
+        "Error",
+        error.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
     // if (error == null) {
     //   email = "";
