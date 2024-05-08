@@ -15,7 +15,6 @@ class LoginController extends GetxController {
       Get.snackbar(
         "Error",
         error.toString(),
-        snackPosition: SnackPosition.BOTTOM,
       );
     }
     // if (error == null) {

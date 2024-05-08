@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/profile_header.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/menu_widget.dart';
-import 'package:login_app/src/features/core/screens/users/users.dart';
+import 'package:login_app/src/features/core/screens/users/users_screen.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 
 class ProfileScreen extends StatelessWidget {
