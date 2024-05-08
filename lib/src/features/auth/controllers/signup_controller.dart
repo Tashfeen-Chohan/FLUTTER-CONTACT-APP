@@ -19,13 +19,13 @@ class SignupController extends GetxController {
       Get.snackbar(
         "Error",
         error.toString(),
-        snackPosition: SnackPosition.BOTTOM,
       );
     }
   }
 
   Future<void> createUser(UserModel user) async {
     await userRepository.createUser(user);
+    await registerUser(user.email, user.password);
   }
 
   void phoneAuthentication(String phoneNo) {
