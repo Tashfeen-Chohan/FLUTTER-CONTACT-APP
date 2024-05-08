@@ -12,8 +12,11 @@ class UsersScreen extends StatelessWidget {
     final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("All Users"),
-        backgroundColor: Colors.blue,
+        title: const Text(
+          "All Users",
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.deepPurple,
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -32,11 +35,12 @@ class UsersScreen extends StatelessWidget {
                         children: [
                           ListTile(
                             tileColor: tAccentColor.withOpacity(0.1),
-                            iconColor: tAccentColor,
+                            iconColor: Colors.deepPurple,
                             leading: const Icon(Icons.person_2_outlined),
                             title: Text(snapshot.data![index].fullName),
                             subtitle: Text(snapshot.data![index].email),
                           ),
+                          const Divider(height: 15, color: Colors.transparent),
                         ],
                       );
                     },
