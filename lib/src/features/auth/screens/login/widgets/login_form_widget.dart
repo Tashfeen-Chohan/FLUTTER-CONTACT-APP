@@ -28,6 +28,7 @@ class LoginFormWidget extends StatelessWidget {
               height: 15,
             ),
             TextfieldWidget(
+              isPassword: true,
               controller: loginController.password,
               label: "PASSWORD",
               hintText: "********",

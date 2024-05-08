@@ -17,7 +17,7 @@ class UpdateProfile extends StatelessWidget {
         ),
         title: Text(
           "Update Profile",
-          style: textTheme.headlineMedium,
+          style: textTheme.headlineSmall,
         ),
         centerTitle: true,
       ),

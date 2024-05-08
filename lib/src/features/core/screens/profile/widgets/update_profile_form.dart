@@ -22,32 +22,26 @@ class UpdateProfileForm extends StatelessWidget {
               return Form(
                 child: Column(
                   children: [
-                    // const TextfieldWidget(
-                    //   label: "Username",
-                    //   hintText: "Full Name",
-                    //   prefixIcon: Icons.verified_user_rounded,
-                    // ),
-                    TextFormField(
+                    TextfieldWidget(
                       initialValue: userData.fullName,
+                      label: "Username",
+                      hintText: "Full Name",
+                      prefixIcon: Icons.verified_user_rounded,
                     ),
                     const SizedBox(height: 15),
-                    const TextfieldWidget(
+                    TextfieldWidget(
+                      initialValue: userData.email,
                       label: "Email",
                       hintText: "Email",
                       prefixIcon: Icons.email,
                     ),
                     const SizedBox(height: 15),
-                    const TextfieldWidget(
-                      label: "Phone No",
-                      hintText: "Phone Number",
-                      prefixIcon: Icons.phone,
-                    ),
-                    const SizedBox(height: 15),
-                    const TextfieldWidget(
+                    TextfieldWidget(
+                      isPassword: true,
+                      initialValue: userData.password,
                       label: "Password",
                       hintText: "********",
                       prefixIcon: Icons.fingerprint,
-                      suffixIcon: Icons.remove_red_eye,
                     ),
                     const SizedBox(height: 30),
                     ElevatedButtonWidget(

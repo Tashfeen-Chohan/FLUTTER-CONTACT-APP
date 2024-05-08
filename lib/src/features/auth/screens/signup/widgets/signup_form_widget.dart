@@ -42,11 +42,12 @@ class SignupFormWidget extends StatelessWidget {
                 height: 15,
               ),
               TextfieldWidget(
+                isPassword: true,
                 controller: signupController.password,
                 label: "Password",
                 hintText: "********",
                 prefixIcon: Icons.fingerprint,
-                suffixIcon: Icons.remove_red_eye,
+                // suffixIcon: Icons.visibility_off,
               ),
               const SizedBox(
                 height: 20,
