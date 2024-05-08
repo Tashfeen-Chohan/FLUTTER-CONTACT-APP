@@ -47,7 +47,6 @@ class SignupFormWidget extends StatelessWidget {
                 label: "Password",
                 hintText: "********",
                 prefixIcon: Icons.fingerprint,
-                // suffixIcon: Icons.visibility_off,
               ),
               const SizedBox(
                 height: 20,
@@ -56,18 +55,6 @@ class SignupFormWidget extends StatelessWidget {
                 text: "SIGNUP",
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    // FOR EMAIL & PASSWORD
-                    // signupController.registerUser(
-                    //   signupController.email.text.trim(),
-                    //   signupController.password.text.trim(),
-                    // )
-
-                    // FOR PHONE AUTHENTICATION
-                    // signupController.phoneAuthentication(
-                    //   signupController.phoneNo.text.trim(),
-                    // ),
-                    // Get.to(() => const OtpScreen())
-
                     final user = UserModel(
                       fullName: signupController.fullName.text.trim(),
                       email: signupController.email.text.trim(),

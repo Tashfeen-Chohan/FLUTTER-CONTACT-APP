@@ -34,6 +34,7 @@ class AuthRepository extends GetxController {
         email: email,
         password: password,
       );
+      Get.snackbar("Success", "Signup Successfully");
       firebaseUser.value != null
           ? Get.offAll(() => const Dashboard())
           : Get.offAll(() => const WelcomeScreen());

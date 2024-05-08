@@ -7,7 +7,7 @@ class SignUpWithEmailAndPasswordFailure {
 
   factory SignUpWithEmailAndPasswordFailure.code(String code) {
     switch (code) {
-      case "week-password":
+      case "weak-password":
         return SignUpWithEmailAndPasswordFailure(
             "Please enter a stronger password");
       case "invalid-email":

@@ -12,23 +12,20 @@ class SignupController extends GetxController {
   final password = TextEditingController();
   final fullName = TextEditingController();
 
-  Future<void> registerUser(String email, String password) async {
+  Future<bool> registerUser(String email, String password) async {
     String? error = await AuthRepository.instance
         .createUserWithEmailAndPassword(email, password);
     if (error != null) {
-      Get.snackbar(
-        "Error",
-        error.toString(),
-      );
+      Get.snackbar("Error", error.toString());
+      return false;
     }
+    return true;
   }
 
   Future<void> createUser(UserModel user) async {
-    await userRepository.createUser(user);
-    await registerUser(user.email, user.password);
-  }
-
-  void phoneAuthentication(String phoneNo) {
-    AuthRepository.instance.phoneAuthentication(phoneNo);
+    final success = await registerUser(user.email, user.password);
+    if (success) {
+      await userRepository.createUser(user);
+    }
   }
 }

@@ -14,4 +14,8 @@ class ProfileController extends GetxController {
       return _userRepo.getUserDetails(email);
     }
   }
+
+  getAllUsers(){
+    return _userRepo.getAllUsers();
+  }
 }
