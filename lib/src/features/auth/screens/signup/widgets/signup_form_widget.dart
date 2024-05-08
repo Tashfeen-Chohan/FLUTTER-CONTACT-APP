@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/common/textfield_widget.dart';
 import 'package:login_app/src/features/auth/controllers/signup_controller.dart';
+import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/auth/screens/forget_password/forget_password_otp/otp_screen.dart';
 
 class SignupFormWidget extends StatelessWidget {
@@ -29,7 +30,7 @@ class SignupFormWidget extends StatelessWidget {
                 prefixIcon: Icons.verified_user_outlined,
               ),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               TextfieldWidget(
                 controller: signupController.email,
@@ -38,16 +39,7 @@ class SignupFormWidget extends StatelessWidget {
                 prefixIcon: Icons.email_outlined,
               ),
               const SizedBox(
-                height: 10,
-              ),
-              TextfieldWidget(
-                controller: signupController.phoneNo,
-                label: "Phone No",
-                hintText: "Phone No",
-                prefixIcon: Icons.numbers,
-              ),
-              const SizedBox(
-                height: 10,
+                height: 15,
               ),
               TextfieldWidget(
                 controller: signupController.password,
@@ -61,18 +53,27 @@ class SignupFormWidget extends StatelessWidget {
               ),
               ElevatedButtonWidget(
                 text: "SIGNUP",
-                onPressed: () => {
-                  if (formKey.currentState!.validate())
-                    {
-                      signupController.registerUser(
-                        signupController.email.text.trim(),
-                        signupController.password.text.trim(),
-                      )
-                      // signupController.phoneAuthentication(
-                      //   signupController.phoneNo.text.trim(),
-                      // ),
-                      // Get.to(() => const OtpScreen())
-                    }
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    // FOR EMAIL & PASSWORD
+                    // signupController.registerUser(
+                    //   signupController.email.text.trim(),
+                    //   signupController.password.text.trim(),
+                    // )
+
+                    // FOR PHONE AUTHENTICATION
+                    // signupController.phoneAuthentication(
+                    //   signupController.phoneNo.text.trim(),
+                    // ),
+                    // Get.to(() => const OtpScreen())
+
+                    final user = UserModel(
+                      fullName: signupController.fullName.text.trim(),
+                      email: signupController.email.text.trim(),
+                      password: signupController.password.text.trim(),
+                    );
+                    signupController.createUser(user);
+                  }
                 },
               ),
             ],
