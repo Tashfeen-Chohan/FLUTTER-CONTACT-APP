@@ -18,54 +18,75 @@ class SignupFormWidget extends StatelessWidget {
     final signupController = Get.put(SignupController());
     final formKey = GlobalKey<FormState>();
     return Form(
-        key: formKey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: Column(
-            children: [
-              TextfieldWidget(
-                controller: signupController.fullName,
-                label: "Username",
-                hintText: "Full Name",
-                prefixIcon: Icons.verified_user_outlined,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              TextfieldWidget(
-                controller: signupController.email,
-                label: "Email",
-                hintText: "E-Mail",
-                prefixIcon: Icons.email_outlined,
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              TextfieldWidget(
-                isPassword: true,
-                controller: signupController.password,
-                label: "Password",
-                hintText: "********",
-                prefixIcon: Icons.fingerprint,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButtonWidget(
-                text: "SIGNUP",
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    final user = UserModel(
-                      fullName: signupController.fullName.text.trim(),
-                      email: signupController.email.text.trim(),
-                      password: signupController.password.text.trim(),
-                    );
-                    signupController.createUser(user);
-                  }
-                },
-              ),
-            ],
-          ),
-        ));
+      key: formKey,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20),
+        child: Column(
+          children: [
+            TextfieldWidget(
+              controller: signupController.fullName,
+              label: "Username",
+              hintText: "Full Name",
+              prefixIcon: Icons.verified_user_outlined,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter your usernname!";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            TextfieldWidget(
+              controller: signupController.email,
+              label: "Email",
+              hintText: "E-Mail",
+              prefixIcon: Icons.email_outlined,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter your email address!";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            TextfieldWidget(
+              isPassword: true,
+              controller: signupController.password,
+              label: "Password",
+              hintText: "********",
+              prefixIcon: Icons.fingerprint,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return "Please enter password!";
+                } else if (value.length < 6) {
+                  return "Password must be at least 6 characters long";
+                }
+                return null;
+              },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButtonWidget(
+              text: "SIGNUP",
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  final user = UserModel(
+                    fullName: signupController.fullName.text.trim(),
+                    email: signupController.email.text.trim(),
+                    password: signupController.password.text.trim(),
+                  );
+                  signupController.createUser(user);
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

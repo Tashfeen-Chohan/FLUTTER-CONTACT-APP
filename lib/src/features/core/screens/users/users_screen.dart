@@ -65,15 +65,22 @@ class _UsersScreenState extends State<UsersScreen> {
                               : snapshot.data![index];
                           return Column(
                             children: [
-                              ListTile(
-                                tileColor: tAccentColor.withOpacity(0.1),
-                                iconColor: Colors.deepPurple,
-                                leading: const Icon(
-                                  Icons.person_2_outlined,
-                                  size: 40,
+                              Material(
+                                elevation: 5,
+                                borderRadius: BorderRadius.circular(10),
+                                child: ListTile(
+                                  tileColor: tAccentColor.withOpacity(0.1),
+                                  iconColor: Colors.deepPurple,
+                                  leading: const Icon(
+                                    Icons.person_2_outlined,
+                                    size: 40,
+                                  ),
+                                  title: Text(user.fullName),
+                                  subtitle: Text(user.email),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                 ),
-                                title: Text(user.fullName),
-                                subtitle: Text(user.email),
                               ),
                               const Divider(
                                   height: 15, color: Colors.transparent),

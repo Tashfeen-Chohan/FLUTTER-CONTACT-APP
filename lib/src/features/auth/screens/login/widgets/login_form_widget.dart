@@ -19,6 +19,12 @@ class LoginFormWidget extends StatelessWidget {
         child: Column(
           children: [
             TextfieldWidget(
+              validator: (value){
+                if (value == null || value.isEmpty){
+                  return "Please enter your email address!";
+                }
+                return null;
+              },
               controller: loginController.email,
               label: "EMAIL",
               hintText: "Your Email",
