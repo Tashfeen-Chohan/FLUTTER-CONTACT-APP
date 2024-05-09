@@ -15,6 +15,8 @@ class LoginFailure {
         return LoginFailure("Email is not valid or badly formated.");
       case "invalid-credential":
         return LoginFailure("Invalid credentials. Please try again.");
+      case "network-request-failed":
+        return LoginFailure("No internet connection.");
       default:
         return LoginFailure();
     }

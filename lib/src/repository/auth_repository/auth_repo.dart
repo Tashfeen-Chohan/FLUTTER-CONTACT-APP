@@ -55,7 +55,7 @@ class AuthRepository extends GetxController {
       Get.snackbar("Success", "Login Successfully");
     } on FirebaseAuthException catch (e) {
       final ex = LoginFailure.fromCode(e.code);
-      // print("Login Code : ${e.code}");
+      print("Login Code : ${e.code}");
       return ex.message;
     } catch (_) {
       final ex = LoginFailure();

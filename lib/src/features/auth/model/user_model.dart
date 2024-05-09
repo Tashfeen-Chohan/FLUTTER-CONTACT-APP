@@ -7,12 +7,13 @@ class UserModel {
   final String password;
   final Timestamp timestamp;
 
-  UserModel(
-      {this.id,
-      required this.fullName,
-      required this.email,
-      required this.password,
-      required this.timestamp});
+  UserModel({
+    this.id,
+    required this.fullName,
+    required this.email,
+    required this.password,
+    required this.timestamp,
+  });
 
   toJson() {
     return {

@@ -22,6 +22,8 @@ class SignUpWithEmailAndPasswordFailure {
       case "user-disabled":
         return SignUpWithEmailAndPasswordFailure(
             "This user has been disabled. Please contact support for help.");
+      case "network-request-failed":
+        return SignUpWithEmailAndPasswordFailure("No internet connection.");
       default:
         return SignUpWithEmailAndPasswordFailure();
     }

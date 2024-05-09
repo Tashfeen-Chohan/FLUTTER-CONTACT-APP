@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 import 'package:login_app/src/repository/user_repository/user_repository.dart';
 
@@ -18,4 +19,9 @@ class ProfileController extends GetxController {
   getAllUsers(){
     return _userRepo.getAllUsers();
   }
+
+  updateRecord(UserModel user) async {
+    await _userRepo.updateUserRecord(user);
+  }  
+
 }

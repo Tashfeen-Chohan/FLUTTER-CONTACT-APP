@@ -19,18 +19,24 @@ class UpdateProfileForm extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasData) {
               UserModel userData = snapshot.data as UserModel;
+
+              // Controllers
+              final fullName = TextEditingController(text: userData.fullName);
+              final email = TextEditingController(text: userData.email);
+              final password = TextEditingController(text: userData.password);
+
               return Form(
                 child: Column(
                   children: [
                     TextfieldWidget(
-                      initialValue: userData.fullName,
+                      controller: fullName,
                       label: "Username",
                       hintText: "Full Name",
                       prefixIcon: Icons.verified_user_rounded,
                     ),
                     const SizedBox(height: 15),
                     TextfieldWidget(
-                      initialValue: userData.email,
+                      controller: email,
                       label: "Email",
                       hintText: "Email",
                       prefixIcon: Icons.email,
@@ -38,7 +44,7 @@ class UpdateProfileForm extends StatelessWidget {
                     const SizedBox(height: 15),
                     TextfieldWidget(
                       isPassword: true,
-                      initialValue: userData.password,
+                      controller: password,
                       label: "Password",
                       hintText: "********",
                       prefixIcon: Icons.fingerprint,
@@ -46,8 +52,15 @@ class UpdateProfileForm extends StatelessWidget {
                     const SizedBox(height: 30),
                     ElevatedButtonWidget(
                       text: "Edit Profile",
-                      onPressed: () {
-                        Get.snackbar("Hello", "Tashfeen Chohan");
+                      onPressed: () async {
+                        final updatedData = UserModel(
+                          fullName: fullName.text.trim(),
+                          email: email.text.trim(),
+                          password: password.text.trim(),
+                          timestamp: userData.timestamp,
+                        );
+                        await controller.updateRecord(updatedData);
+                        Get.snackbar("Sucess", "Record updated successfully!");
                       },
                     ),
                   ],

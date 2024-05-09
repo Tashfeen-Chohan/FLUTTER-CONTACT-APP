@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
@@ -79,6 +80,7 @@ class SignupFormWidget extends StatelessWidget {
                     fullName: signupController.fullName.text.trim(),
                     email: signupController.email.text.trim(),
                     password: signupController.password.text.trim(),
+                    timestamp: Timestamp.now()
                   );
                   signupController.createUser(user);
                 }
