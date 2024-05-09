@@ -24,4 +24,9 @@ class ProfileController extends GetxController {
     await _userRepo.updateUserRecord(user);
   }  
 
+  deleteRecord(String id) async {
+    await _userRepo.deleteUser(id);
+  }
+
+
 }

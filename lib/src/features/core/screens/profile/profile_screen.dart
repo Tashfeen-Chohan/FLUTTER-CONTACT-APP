@@ -10,6 +10,7 @@ class ProfileScreen extends StatelessWidget {
 
   void _handleLogout() {
     AuthRepository.instance.signOut();
+    Get.snackbar("Success", "Lougout Successfully!");
   }
 
   @override

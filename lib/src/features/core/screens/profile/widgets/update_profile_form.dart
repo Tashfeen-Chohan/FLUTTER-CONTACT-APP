@@ -54,6 +54,7 @@ class UpdateProfileForm extends StatelessWidget {
                       text: "Edit Profile",
                       onPressed: () async {
                         final updatedData = UserModel(
+                          id: userData.id,
                           fullName: fullName.text.trim(),
                           email: email.text.trim(),
                           password: password.text.trim(),

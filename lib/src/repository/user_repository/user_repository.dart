@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
+import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
@@ -21,7 +23,7 @@ class UserRepository extends GetxController {
   Future<List<UserModel>> getAllUsers() async {
     final snapshot = await _db
         .collection("Users")
-        .orderBy("timestamp", descending: true)
+        .orderBy("Timestamp", descending: true)
         .get();
     final userData =
         snapshot.docs.map((e) => UserModel.fromSnapshot(e)).toList();
@@ -32,5 +34,16 @@ class UserRepository extends GetxController {
     await _db.collection("Users").doc(user.id).update(user.toJson());
   }
 
-
+  Future<void> deleteUser(String userId) async {
+    try {
+      // Delete user from Firebase Authentication
+      await FirebaseAuth.instance.currentUser?.delete();
+      // Delete user's document from Firestore collection
+      await _db.collection('Users').doc(userId).delete();
+      Get.to(() => const WelcomeScreen());
+      Get.snackbar("Success", "Record deleted successfully!");
+    } catch (e) {
+      Get.snackbar("Error", "Something went wrong!");
+    }
+  }
 }

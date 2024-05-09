@@ -4,15 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
-import 'package:login_app/src/features/auth/controllers/otp_controller.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final otpController = Get.put(OtpController());
-    String otp = "";
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -46,10 +43,7 @@ class OtpScreen extends StatelessWidget {
                 numberOfFields: 6,
                 fillColor: Colors.black.withOpacity(0.1),
                 filled: true,
-                onSubmit: (code) {
-                  otp = code;
-                  otpController.verifyOtp(otp);
-                },
+                onSubmit: (code) {},
               ),
               const SizedBox(
                 height: 30,
@@ -57,7 +51,7 @@ class OtpScreen extends StatelessWidget {
               ElevatedButtonWidget(
                 text: "Next",
                 onPressed: () {
-                  otpController.verifyOtp(otp);
+                  Get.snackbar("Info", "This feature is under development");
                 },
               )
             ],
