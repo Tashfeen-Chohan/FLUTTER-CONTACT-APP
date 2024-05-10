@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
+import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 
 class UserRepository extends GetxController {
   static UserRepository get instance => Get.find();
 
+  final _authRepo = Get.put(AuthRepository());
   final _db = FirebaseFirestore.instance;
 
   Future<void> createUser(UserModel user) async {
@@ -31,19 +32,25 @@ class UserRepository extends GetxController {
   }
 
   Future<void> updateUserRecord(UserModel user) async {
-    await _db.collection("Users").doc(user.id).update(user.toJson());
+    try {
+      await _db.collection("Users").doc(user.id).update(user.toJson());
+      Get.snackbar("Success", "Record updated successfully");
+    } catch (e) {
+      Get.snackbar("Error", "Something went wrong!");
+    }
   }
 
-  Future<void> deleteUser(String userId) async {
+  Future<void> deleteUser(UserModel user) async {
     try {
       // Delete user from Firebase Authentication
-      await FirebaseAuth.instance.currentUser?.delete();
+      await _authRepo.deleteUserAccount();
       // Delete user's document from Firestore collection
-      await _db.collection('Users').doc(userId).delete();
+      await _db.collection('Users').doc(user.id).delete();
       Get.to(() => const WelcomeScreen());
       Get.snackbar("Success", "Record deleted successfully!");
     } catch (e) {
       Get.snackbar("Error", "Something went wrong!");
+      print("Delete User : ${e.toString()}");
     }
   }
 }

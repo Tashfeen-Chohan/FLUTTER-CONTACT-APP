@@ -68,8 +68,6 @@ class UpdateProfileForm extends StatelessWidget {
                               timestamp: userData.timestamp,
                             );
                             await controller.updateRecord(updatedData);
-                            Get.snackbar(
-                                "Sucess", "Record updated successfully!");
                           },
                         ),
                       ],
@@ -97,7 +95,9 @@ class UpdateProfileForm extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.deleteRecord(userData);
+                        },
                         child: const Text(
                           "Delete",
                           style: TextStyle(

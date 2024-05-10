@@ -12,7 +12,6 @@ class AuthRepository extends GetxController {
 
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
-  var verificationId = "".obs;
 
   @override
   void onReady() {
@@ -64,8 +63,18 @@ class AuthRepository extends GetxController {
     return null;
   }
 
+  Future<void> deleteUserAccount() async {
+    // Get the current user
+    User? currentUser = _auth.currentUser;
+    // Delete the user account
+    if (currentUser != null) {
+      await currentUser.delete();
+      await _auth.signOut();
+    }
+
+  }
+
   Future<void> signOut() async {
     await _auth.signOut();
   }
-
 }
