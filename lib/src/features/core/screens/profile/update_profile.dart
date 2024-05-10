@@ -56,42 +56,10 @@ class UpdateProfile extends StatelessWidget {
 
               // FORM
               const UpdateProfileForm(),
-              const SizedBox(height: 30),
+              
 
               // FOOTER
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text.rich(
-                    TextSpan(
-                      style: TextStyle(fontSize: 16),
-                      children: [
-                        TextSpan(text: "Joinded"),
-                        WidgetSpan(
-                            child: SizedBox(
-                          width: 10,
-                        )),
-                        TextSpan(
-                          text: "03 May 2024",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Delete",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
+              ],
           ),
         ),
       ),

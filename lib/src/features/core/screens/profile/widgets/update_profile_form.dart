@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/common/textfield_widget.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
@@ -25,47 +26,90 @@ class UpdateProfileForm extends StatelessWidget {
               final email = TextEditingController(text: userData.email);
               final password = TextEditingController(text: userData.password);
 
-              return Form(
-                child: Column(
-                  children: [
-                    TextfieldWidget(
-                      controller: fullName,
-                      label: "Username",
-                      hintText: "Full Name",
-                      prefixIcon: Icons.verified_user_rounded,
+              DateTime dateTime = userData.timestamp.toDate();
+              String formattedDate =
+                  DateFormat('dd MMMM yyyy', 'en_US').format(dateTime);
+
+              return Column(
+                children: [
+                  Form(
+                    child: Column(
+                      children: [
+                        TextfieldWidget(
+                          controller: fullName,
+                          label: "Username",
+                          hintText: "Full Name",
+                          prefixIcon: Icons.verified_user_rounded,
+                        ),
+                        const SizedBox(height: 15),
+                        TextfieldWidget(
+                          controller: email,
+                          label: "Email",
+                          hintText: "Email",
+                          prefixIcon: Icons.email,
+                        ),
+                        const SizedBox(height: 15),
+                        TextfieldWidget(
+                          isPassword: true,
+                          controller: password,
+                          label: "Password",
+                          hintText: "********",
+                          prefixIcon: Icons.fingerprint,
+                        ),
+                        const SizedBox(height: 30),
+                        ElevatedButtonWidget(
+                          text: "Edit Profile",
+                          onPressed: () async {
+                            final updatedData = UserModel(
+                              id: userData.id,
+                              fullName: fullName.text.trim(),
+                              email: email.text.trim(),
+                              password: password.text.trim(),
+                              timestamp: userData.timestamp,
+                            );
+                            await controller.updateRecord(updatedData);
+                            Get.snackbar(
+                                "Sucess", "Record updated successfully!");
+                          },
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 15),
-                    TextfieldWidget(
-                      controller: email,
-                      label: "Email",
-                      hintText: "Email",
-                      prefixIcon: Icons.email,
-                    ),
-                    const SizedBox(height: 15),
-                    TextfieldWidget(
-                      isPassword: true,
-                      controller: password,
-                      label: "Password",
-                      hintText: "********",
-                      prefixIcon: Icons.fingerprint,
-                    ),
-                    const SizedBox(height: 30),
-                    ElevatedButtonWidget(
-                      text: "Edit Profile",
-                      onPressed: () async {
-                        final updatedData = UserModel(
-                          id: userData.id,
-                          fullName: fullName.text.trim(),
-                          email: email.text.trim(),
-                          password: password.text.trim(),
-                          timestamp: userData.timestamp,
-                        );
-                        await controller.updateRecord(updatedData);
-                        Get.snackbar("Sucess", "Record updated successfully!");
-                      },
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                          style: const TextStyle(fontSize: 16),
+                          children: [
+                            const TextSpan(text: "Joinded"),
+                            const WidgetSpan(
+                                child: SizedBox(
+                              width: 10,
+                            )),
+                            TextSpan(
+                              text: formattedDate,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Delete",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               );
             } else if (snapshot.hasError) {
               return Center(
