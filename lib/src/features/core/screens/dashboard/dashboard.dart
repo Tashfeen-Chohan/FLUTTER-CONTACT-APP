@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_app/src/common/side_drawer.dart';
 import 'package:login_app/src/features/core/screens/dashboard/widgets/categories/categories.dart';
 import 'package:login_app/src/features/core/screens/dashboard/widgets/dashboard_appbar.dart';
 import 'package:login_app/src/features/core/screens/dashboard/widgets/header.dart';
@@ -13,6 +14,7 @@ class Dashboard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: const DashboardAppbar(),
+      drawer: const SideDrawer(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(30),

@@ -13,7 +13,6 @@ class DashboardAppbar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: const Icon(Icons.menu),
       title: const Text(
         "Dashboard",
         style: TextStyle(
@@ -30,7 +29,7 @@ class DashboardAppbar extends StatelessWidget implements PreferredSize {
           ),
         ),
       ],
-    );  
+    );
   }
 
   @override

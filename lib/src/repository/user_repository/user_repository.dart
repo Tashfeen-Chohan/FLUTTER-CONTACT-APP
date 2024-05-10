@@ -50,6 +50,7 @@ class UserRepository extends GetxController {
       Get.snackbar("Success", "Record deleted successfully!");
     } catch (e) {
       Get.snackbar("Error", "Something went wrong!");
+      // ignore: avoid_print
       print("Delete User : ${e.toString()}");
     }
   }
