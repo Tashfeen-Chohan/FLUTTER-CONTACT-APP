@@ -43,6 +43,7 @@ class UpdateProfileForm extends StatelessWidget {
                         ),
                         const SizedBox(height: 15),
                         TextfieldWidget(
+                          isEnabled: false,
                           controller: email,
                           label: "Email",
                           hintText: "Email",

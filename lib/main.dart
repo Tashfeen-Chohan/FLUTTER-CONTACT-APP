@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:login_app/firebase_options.dart';
 import 'package:login_app/src/features/auth/screens/forget_password/forget_password_otp/otp_screen.dart';
 import 'package:login_app/src/features/auth/screens/login/login_screen.dart';
@@ -12,13 +13,14 @@ import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 import 'package:login_app/src/utils/theme/theme.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
     (value) => Get.put(
       AuthRepository(),
     ),
   );
+  await GetStorage.init();
   runApp(const MyApp());
 }
 

@@ -71,10 +71,14 @@ class AuthRepository extends GetxController {
       await currentUser.delete();
       await _auth.signOut();
     }
-
   }
 
   Future<void> signOut() async {
-    await _auth.signOut();
+    try {
+      await _auth.signOut();
+      Get.snackbar("Success", "Logout Successfully");
+    } catch (e) {
+      Get.snackbar("Error", "Something went wrong!");
+    }
   }
 }

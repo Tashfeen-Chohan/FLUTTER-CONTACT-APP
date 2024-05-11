@@ -10,6 +10,7 @@ class TextfieldWidget extends StatefulWidget {
     this.controller,
     this.initialValue,
     this.isPassword = false,
+    this.isEnabled = true,
     this.validator,
   });
 
@@ -19,6 +20,7 @@ class TextfieldWidget extends StatefulWidget {
   final IconData? suffixIcon;
   final TextEditingController? controller;
   final bool isPassword;
+  final bool isEnabled;
   final String? Function(String?)? validator;
 
   @override
@@ -30,6 +32,7 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: widget.isEnabled,
       obscureText: widget.isPassword ? _obscureText : false,
       initialValue: widget.initialValue,
       controller: widget.controller,
