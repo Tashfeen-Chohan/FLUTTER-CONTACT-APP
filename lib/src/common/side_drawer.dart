@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:login_app/src/constants/colors.dart';
 import 'package:login_app/src/constants/image_strings.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/auth/screens/login/login_screen.dart';
@@ -15,6 +16,7 @@ class SideDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     GetStorage storage = GetStorage();
     UserModel userData = storage.read("userData");
     final authRepo = Get.put(AuthRepository());
@@ -22,9 +24,11 @@ class SideDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(
-            padding: const EdgeInsets.all(0),
+            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
             child: UserAccountsDrawerHeader(
-              decoration: const BoxDecoration(color: Colors.blue),
+              decoration: const BoxDecoration(
+                color: Colors.blueAccent,
+              ),
               accountName: Text(userData.fullName),
               accountEmail: Text(userData.email),
               currentAccountPicture: const CircleAvatar(
@@ -116,7 +120,18 @@ class MenuTileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      leading: Icon(leadingIcon),
+      leading: Container(
+        height: 35,
+        width: 35,
+        decoration: BoxDecoration(
+          color: tAccentColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(100),
+        ),
+        child: Icon(
+          leadingIcon,
+          color: tAccentColor,
+        ),
+      ),
       title: Text(
         title,
         style: TextStyle(color: titleColor, fontWeight: FontWeight.bold),
