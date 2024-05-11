@@ -15,7 +15,7 @@ class _UsersScreenState extends State<UsersScreen> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
-    
+
     return Scaffold(
       appBar: AppBar(
         foregroundColor: Colors.white,
@@ -41,30 +41,52 @@ class _UsersScreenState extends State<UsersScreen> {
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Material(
-                                elevation: 5,
-                                borderRadius: BorderRadius.circular(10),
-                                child: ListTile(
-                                  tileColor: tAccentColor.withOpacity(0.1),
-                                  iconColor: Colors.deepPurple,
-                                  leading: const Icon(Icons.person_2_outlined),
-                                  title: Text(
-                                    snapshot.data![index].fullName,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,),
-                                  ),
-                                  subtitle: Text(snapshot.data![index].email),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                          return Dismissible(
+                              key: Key(snapshot.data![index].email),
+                              direction: DismissDirection.endToStart,
+                              background: Container(
+                                alignment: Alignment.centerRight,
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                margin: const EdgeInsets.only(bottom: 15),
+                                child: const Icon(Icons.delete,
+                                    color: Colors.white),
                               ),
-                              const Divider(
-                                  height: 15, color: Colors.transparent),
-                            ],
-                          );
+                              onDismissed: (direction) {
+                                controller.deleteOtherUserAccount(
+                                    snapshot.data![index]);
+                              },
+                              child: Column(
+                                children: [
+                                  Material(
+                                    elevation: 5,
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: ListTile(
+                                      tileColor: tAccentColor.withOpacity(0.1),
+                                      iconColor: Colors.deepPurple,
+                                      leading:
+                                          const Icon(Icons.person_2_outlined),
+                                      title: Text(
+                                        snapshot.data![index].fullName,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      subtitle:
+                                          Text(snapshot.data![index].email),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                  ),
+                                  const Divider(
+                                      height: 15, color: Colors.transparent),
+                                ],
+                              ));
                         },
                       );
                     } else if (snapshot.hasError) {

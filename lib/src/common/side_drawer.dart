@@ -18,7 +18,6 @@ class SideDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(ProfileController());
     final authRepo = Get.put(AuthRepository());
-    bool isAdmin = false;
     // GetStorage storage = GetStorage();
     // UserModel userData = storage.read("userData");
     return Drawer(
@@ -32,17 +31,21 @@ class SideDrawer extends StatelessWidget {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
                       UserModel userData = snapshot.data as UserModel;
-                      isAdmin = userData.email == "chohantashfeen@gmail.com";
-                      print(isAdmin);
+
                       return UserAccountsDrawerHeader(
                         decoration: const BoxDecoration(
-                          color: Colors.blueAccent,
+                            // color: tAccentColor.withOpacity(0.6),
+                            color: Colors.blue),
+                        accountName: Text(
+                          userData.fullName,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                        accountName: Text(userData.fullName),
                         accountEmail: Text(userData.email),
                         currentAccountPicture: const CircleAvatar(
-                          radius: 10,
-                          foregroundImage: AssetImage(tProfile),
+                          radius: 20,
+                          backgroundImage: AssetImage(tProfile),
                         ),
                       );
                     } else {

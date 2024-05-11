@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
-import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 
 class UserRepository extends GetxController {
@@ -53,7 +52,18 @@ class UserRepository extends GetxController {
       await _authRepo.deleteUserAccount();
       // Delete user's document from Firestore collection
       await _db.collection('Users').doc(user.id).delete();
-      Get.to(() => const WelcomeScreen());
+      Get.snackbar("Success", "Record deleted successfully!");
+    } catch (e) {
+      Get.snackbar("Error", "Something went wrong!");
+      // ignore: avoid_print
+      print("Delete User : ${e.toString()}");
+    }
+  }
+
+  Future<void> deleteOtherUser(UserModel user) async {
+    try {
+      // Delete user's document from Firestore collection
+      await _db.collection('Users').doc(user.id).delete();
       Get.snackbar("Success", "Record deleted successfully!");
     } catch (e) {
       Get.snackbar("Error", "Something went wrong!");

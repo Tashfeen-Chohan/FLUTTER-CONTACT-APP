@@ -16,17 +16,19 @@ class ProfileController extends GetxController {
     }
   }
 
-  getAllUsers(){
+  getAllUsers() {
     return _userRepo.getAllUsers();
   }
 
   updateRecord(UserModel user) async {
     await _userRepo.updateUserRecord(user);
-  }  
+  }
 
   deleteRecord(UserModel user) async {
     await _userRepo.deleteUser(user);
   }
 
-
+  deleteOtherUserAccount(UserModel user) async {
+    await _userRepo.deleteOtherUser(user);
+  }
 }
