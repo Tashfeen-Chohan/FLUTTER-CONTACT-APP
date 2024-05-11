@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:login_app/src/constants/colors.dart';
 import 'package:login_app/src/constants/image_strings.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/auth/screens/login/login_screen.dart';
 import 'package:login_app/src/features/auth/screens/signup/signup_screen.dart';
+import 'package:login_app/src/features/core/controller/profile_controller.dart';
 import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
 import 'package:login_app/src/features/core/screens/users/users_screen.dart';
@@ -16,26 +16,46 @@ class SideDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-    GetStorage storage = GetStorage();
-    UserModel userData = storage.read("userData");
+    final controller = Get.put(ProfileController());
     final authRepo = Get.put(AuthRepository());
+    bool isAdmin = false;
+    // GetStorage storage = GetStorage();
+    // UserModel userData = storage.read("userData");
     return Drawer(
       child: ListView(
         children: [
           DrawerHeader(
             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-            child: UserAccountsDrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.blueAccent,
-              ),
-              accountName: Text(userData.fullName),
-              accountEmail: Text(userData.email),
-              currentAccountPicture: const CircleAvatar(
-                radius: 10,
-                foregroundImage: AssetImage(tProfile),
-              ),
-            ),
+            child: FutureBuilder(
+                future: controller.getUserData(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasData) {
+                      UserModel userData = snapshot.data as UserModel;
+                      isAdmin = userData.email == "chohantashfeen@gmail.com";
+                      print(isAdmin);
+                      return UserAccountsDrawerHeader(
+                        decoration: const BoxDecoration(
+                          color: Colors.blueAccent,
+                        ),
+                        accountName: Text(userData.fullName),
+                        accountEmail: Text(userData.email),
+                        currentAccountPicture: const CircleAvatar(
+                          radius: 10,
+                          foregroundImage: AssetImage(tProfile),
+                        ),
+                      );
+                    } else {
+                      return const Center(
+                        child: Text("Something went wrong!"),
+                      );
+                    }
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                }),
           ),
           const Padding(
             padding: EdgeInsets.all(10),
@@ -54,17 +74,14 @@ class SideDrawer extends StatelessWidget {
             title: "Contacts",
             onTap: () => Get.to(() => const Dashboard()),
           ),
-          (userData.email == "chohantashfeen@gmail.com" ||
-                  userData.email == "anas@gmail.com")
-              ? MenuTileWidget(
-                  leadingIcon: Icons.group,
-                  title: "Users",
-                  onTap: () {
-                    Navigator.pop(context);
-                    Get.to(() => const UsersScreen());
-                  },
-                )
-              : const SizedBox(),
+          MenuTileWidget(
+            leadingIcon: Icons.group,
+            title: "Users",
+            onTap: () {
+              Navigator.pop(context);
+              Get.to(() => const UsersScreen());
+            },
+          ),
           MenuTileWidget(
             leadingIcon: Icons.login_sharp,
             title: "Login",
