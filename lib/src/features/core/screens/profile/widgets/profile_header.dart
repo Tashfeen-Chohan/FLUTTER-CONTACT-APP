@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/constants/image_strings.dart';
+import 'package:login_app/src/features/auth/model/user_model.dart';
+import 'package:login_app/src/features/core/controller/profile_controller.dart';
 import 'package:login_app/src/features/core/screens/profile/update_profile.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
@@ -12,6 +14,7 @@ class ProfileHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final controller = Get.put(ProfileController());
     return Column(
       children: [
         Stack(
@@ -42,22 +45,47 @@ class ProfileHeaderWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        Text(
-          "Tashfeen Chohan",
-          style: textTheme.headlineMedium,
-        ),
-        Text(
-          "chohantashfeen@gmail.com",
-          style: textTheme.bodyMedium,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        ElevatedButtonWidget(
-          text: "Edit Profile",
-          width: 150,
-          onPressed: () => Get.to(() => const UpdateProfile()),
-        ),
+        FutureBuilder(
+            future: controller.getUserData(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasData) {
+                  UserModel userData = snapshot.data as UserModel;
+                  return Column(
+                    children: [
+                      Text(
+                        userData.fullName,
+                        style: textTheme.headlineMedium,
+                      ),
+                      Text(
+                        userData.email,
+                        style: textTheme.bodyMedium,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButtonWidget(
+                        text: "Edit Profile",
+                        width: 150,
+                        onPressed: () => Get.to(() => const UpdateProfile()),
+                      ),
+                    ],
+                  );
+                } else if (snapshot.hasError) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return const Center(
+                    child: Text("Something went wrong!"),
+                  );
+                }
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
         const SizedBox(
           height: 10,
         ),

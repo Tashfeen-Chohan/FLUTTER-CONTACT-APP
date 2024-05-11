@@ -34,8 +34,8 @@ class AuthRepository extends GetxController {
         email: email,
         password: password,
       );
-      final userRepo = Get.put(UserRepository());
-      await userRepo.getUserDetails(email);
+      // final userRepo = Get.put(UserRepository());
+      // await userRepo.getUserDetails(email);
       Get.snackbar("Success", "Signup Successfully");
       firebaseUser.value != null
           ? Get.offAll(() => const Dashboard())
@@ -45,6 +45,7 @@ class AuthRepository extends GetxController {
       return ex.message;
     } catch (_) {
       final ex = SignUpWithEmailAndPasswordFailure();
+      print("User Error : $_");
       return ex.message;
     }
     return null;
