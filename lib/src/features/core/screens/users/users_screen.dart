@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_app/src/common/bottom_navbar.dart';
 import 'package:login_app/src/constants/colors.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/core/controller/profile_controller.dart';
@@ -27,6 +28,7 @@ class _UsersScreenState extends State<UsersScreen> {
         backgroundColor: Colors.deepPurple,
         centerTitle: true,
       ),
+      // bottomNavigationBar: const MyBottonNavbar(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20),
