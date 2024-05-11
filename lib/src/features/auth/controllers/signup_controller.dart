@@ -8,9 +8,9 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find();
   final userRepository = Get.put(UserRepository());
 
+  final fullName = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
-  final fullName = TextEditingController();
 
   Future<bool> registerUser(String email, String password) async {
     String? error = await AuthRepository.instance
@@ -18,8 +18,12 @@ class SignupController extends GetxController {
     if (error != null) {
       Get.snackbar("Error", error.toString());
       return false;
+    } else {
+      fullName.text = "";
+      this.email.text = "";
+      this.password.text = "";
+      return true;
     }
-    return true;
   }
 
   Future<void> createUser(UserModel user) async {

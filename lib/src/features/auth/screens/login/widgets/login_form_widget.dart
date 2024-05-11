@@ -19,8 +19,8 @@ class LoginFormWidget extends StatelessWidget {
         child: Column(
           children: [
             TextfieldWidget(
-              validator: (value){
-                if (value == null || value.isEmpty){
+              validator: (value) {
+                if (value == null || value.isEmpty) {
                   return "Please enter your email address!";
                 }
                 return null;
@@ -51,12 +51,14 @@ class LoginFormWidget extends StatelessWidget {
               ),
             ),
             ElevatedButtonWidget(
-              text: "LOGIN",
-              onPressed: () => _handleLogin(
-                loginController.email.text.trim(),
-                loginController.password.text.trim(),
-              ),
-            ),
+                text: "LOGIN",
+                onPressed: () {
+                  _handleLogin(
+                    loginController.email.text.trim(),
+                    loginController.password.text.trim(),
+                  );
+                  
+                }),
           ],
         ),
       ),

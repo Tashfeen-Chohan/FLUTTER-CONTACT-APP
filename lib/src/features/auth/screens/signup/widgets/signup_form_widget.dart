@@ -80,7 +80,7 @@ class SignupFormWidget extends StatelessWidget {
                     fullName: signupController.fullName.text.trim(),
                     email: signupController.email.text.trim(),
                     password: signupController.password.text.trim(),
-                    timestamp: Timestamp.now()
+                    timestamp: Timestamp.now(),
                   );
                   signupController.createUser(user);
                 }
