@@ -56,9 +56,42 @@ class _UsersScreenState extends State<UsersScreen> {
                                 child: const Icon(Icons.delete,
                                     color: Colors.white),
                               ),
-                              onDismissed: (direction) {
-                                controller.deleteOtherUserAccount(
-                                    snapshot.data![index]);
+                              confirmDismiss:
+                                  (DismissDirection direction) async {
+                                return await showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text("Confirm Deletion"),
+                                      content: const Text(
+                                          "Are you sure you want to delete this item?"),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.of(context).pop(false),
+                                          child: const Text("Cancel"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            controller.deleteOtherUserAccount(
+                                                snapshot.data![index]);
+                                            Navigator.of(context).pop(true);
+                                          },
+                                          child: const Text(
+                                            "Delete",
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              onDismissed: (DismissDirection direction) {
+                                // controller.deleteOtherUserAccount(
+                                //     snapshot.data![index]);
                               },
                               child: Column(
                                 children: [
