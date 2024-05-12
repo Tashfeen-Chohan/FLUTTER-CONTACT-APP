@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/common/bottom_navbar.dart';
 import 'package:login_app/src/common/side_drawer.dart';
+import 'package:login_app/src/features/core/screens/contacts/new_contact.dart';
 import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
 
 class ContactsScreen extends StatefulWidget {
@@ -37,11 +38,11 @@ class _ContactsScreenState extends State<ContactsScreen> {
       ),
       drawer: const SideDrawer(),
       bottomNavigationBar: const MyBottonNavbar(),
-      floatingActionButton: const FloatingActionButton(
+      floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
-        onPressed: null,
-        child: Icon(Icons.add),
+        onPressed: () => Get.to(() => const NewContactScreen()),
+        child: const Icon(Icons.add),
       ),
     );
   }
