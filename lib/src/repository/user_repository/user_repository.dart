@@ -15,7 +15,6 @@ class UserRepository extends GetxController {
       await _db.collection("Users").add(user.toJson());
     } catch (e) {
       Get.snackbar("Error", "Could not create user!");
-      print(e);
     }
   }
 

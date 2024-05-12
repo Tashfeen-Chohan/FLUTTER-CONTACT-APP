@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
+import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
 import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:login_app/src/repository/auth_repository/exceptions/login_failure.dart';
 import 'package:login_app/src/repository/auth_repository/exceptions/signup_email_password_failure.dart';
@@ -23,7 +24,7 @@ class AuthRepository extends GetxController {
   _setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const WelcomeScreen())
-        : Get.offAll(() => const Dashboard());
+        : Get.offAll(() => const ContactsScreen());
   }
 
   Future<String?> createUserWithEmailAndPassword(
@@ -75,8 +76,6 @@ class AuthRepository extends GetxController {
       await _auth.signOut();
     }
   }
-
-   
 
   Future<void> signOut() async {
     try {

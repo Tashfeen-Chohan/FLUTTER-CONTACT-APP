@@ -101,8 +101,10 @@ class _UsersScreenState extends State<UsersScreen> {
                                     child: ListTile(
                                       tileColor: tAccentColor.withOpacity(0.1),
                                       iconColor: Colors.deepPurple,
-                                      leading:
-                                          const Icon(Icons.person_2_outlined),
+                                      leading: const Icon(
+                                        Icons.person_2_outlined,
+                                        size: 40,
+                                      ),
                                       title: Text(
                                         snapshot.data![index].fullName,
                                         style: const TextStyle(
