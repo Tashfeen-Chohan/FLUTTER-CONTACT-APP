@@ -9,3 +9,4 @@ const String tGoogleLogo = "assets/images/google_logo.png";
 const String tLogo = "assets/images/logo.png";
 const String tProfile = "assets/images/cowboy.png";
 const String tNewContact = "assets/images/new_contact.jpg";
+const String tPhone = "assets/images/phone.png";
