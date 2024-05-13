@@ -52,7 +52,7 @@ class EditContactScreen extends StatelessWidget {
                       ElevatedButtonWidget(
                         text: "Edit",
                         onPressed: () {},
-                      )
+                      ),
                     ],
                   ),
                 ),
