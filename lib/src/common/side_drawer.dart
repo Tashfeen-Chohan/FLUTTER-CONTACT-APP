@@ -8,6 +8,7 @@ import 'package:login_app/src/features/auth/screens/signup/signup_screen.dart';
 import 'package:login_app/src/features/core/controller/profile_controller.dart';
 import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
 import 'package:login_app/src/features/core/screens/contacts/edit_contact.dart';
+import 'package:login_app/src/features/core/screens/contacts/view_contact.dart';
 import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
 import 'package:login_app/src/features/core/screens/users/users_screen.dart';
@@ -83,6 +84,14 @@ class SideDrawer extends StatelessWidget {
             leadingIcon: Icons.edit_calendar_outlined,
             title: "Edit Contact",
             onTap: () => Get.to(() => const EditContactScreen()),
+          ),
+          MenuTileWidget(
+            leadingIcon: Icons.contact_emergency,
+            title: "View Contact",
+            onTap: () {
+              Navigator.pop(context);
+              Get.to(() => const ViewContactScreen());
+            },
           ),
           MenuTileWidget(
             leadingIcon: Icons.group,
