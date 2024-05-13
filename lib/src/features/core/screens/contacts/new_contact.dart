@@ -62,7 +62,7 @@ class _NewContactScreenState extends State<NewContactScreen> {
               Form(
                 key: formKey,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 30),
                   child: Column(
                     children: [
                       TextfieldWidget(

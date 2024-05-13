@@ -19,7 +19,7 @@ class ContactRepository extends GetxController {
     }
   }
 
-  Future<List<ContactModel>> getUserContacts(String userId) async {
+  Future<List<ContactModel>> getUserContacts(String? userId) async {
     final snapshot = await _db
         .collection("Contacts")
         .where("UserId", isEqualTo: userId)

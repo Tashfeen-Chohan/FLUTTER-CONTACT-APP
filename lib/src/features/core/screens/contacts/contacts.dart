@@ -21,7 +21,8 @@ class _ContactsScreenState extends State<ContactsScreen> {
   final controller = Get.put(UserRepository());
   final _authRepo = Get.put(AuthRepository());
   // ignore: unused_field
-  late final UserModel _user;
+  UserModel? _user;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -35,6 +36,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
       final userData = await controller.getUserDetails(email);
       setState(() {
         _user = userData;
+        _isLoading = false;
       });
     }
   }
@@ -42,6 +44,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
   @override
   Widget build(BuildContext context) {
     final contactRepo = Get.put(ContactRepository());
+    if (_isLoading) {
+      return const SizedBox();
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -73,29 +78,28 @@ class _ContactsScreenState extends State<ContactsScreen> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.all(30),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
               const SizedBox(height: 30),
               FutureBuilder<List<ContactModel>>(
-                future: contactRepo.getUserContacts(_user.id!),
+                future: contactRepo.getUserContacts(_user!.id),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      return ListView.builder(
+                      return GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 8.0,
+                            crossAxisSpacing: 8.0,
+                            childAspectRatio: 0.8,
+                          ),
                           shrinkWrap: true,
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             final data = snapshot.data![index];
-                            return ListTile(
-                              title: Text(data.fullName),
-                              subtitle: Text(data.phoneNo),
-                              // trailing: Text(snapshot.data![index].relationship),
-                              trailing: data.relationship != null &&
-                                      data.relationship!.isNotEmpty
-                                  ? Text(data.relationship!)
-                                  : null,
-                            );
+                            return SingleContactWidget(data: data);
                           });
                     } else if (snapshot.hasError) {
                       return Text(snapshot.error.toString());
@@ -112,6 +116,82 @@ class _ContactsScreenState extends State<ContactsScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class SingleContactWidget extends StatelessWidget {
+  const SingleContactWidget({
+    super.key,
+    required this.data,
+  });
+
+  final ContactModel data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.blue.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(10.0),
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.black.withOpacity(0.1),
+        //     spreadRadius: 1,
+        //     blurRadius: 1,
+        //     offset: const Offset(0, 3),
+        //   ),
+        // ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+                color: Colors.blue.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(100)),
+            child: Center(
+                child: Text(
+              data.fullName[0],
+              style: const TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            )),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            data.fullName,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            data.phoneNo,
+            style: const TextStyle(
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 10),
+          data.relationship != null
+              ? Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Text(data.relationship!),
+                )
+              : const SizedBox(),
+        ],
       ),
     );
   }
