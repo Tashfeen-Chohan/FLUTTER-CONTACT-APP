@@ -11,6 +11,7 @@ class TextfieldWidget extends StatefulWidget {
     this.initialValue,
     this.isPassword = false,
     this.isEnabled = true,
+    this.isNumber = false,
     this.validator,
   });
 
@@ -19,8 +20,7 @@ class TextfieldWidget extends StatefulWidget {
   final IconData prefixIcon;
   final IconData? suffixIcon;
   final TextEditingController? controller;
-  final bool isPassword;
-  final bool isEnabled;
+  final bool isPassword, isEnabled, isNumber;
   final String? Function(String?)? validator;
 
   @override
@@ -37,6 +37,7 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
       initialValue: widget.initialValue,
       controller: widget.controller,
       validator: widget.validator,
+      keyboardType: widget.isNumber ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
         label: Text(widget.label.toUpperCase()),
         hintText: widget.hintText,
