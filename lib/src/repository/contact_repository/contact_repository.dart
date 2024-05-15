@@ -39,4 +39,14 @@ class ContactRepository extends GetxController {
       return null;
     }
   }
+
+  Future<void> updateContact(ContactModel contact) async {
+    try {
+      await _db.collection("Contacts").doc(contact.id).update(contact.toJson());
+      Get.snackbar("Success", "Contact updated successfully");
+    } catch (e) {
+      Get.snackbar("Error", "Something went wrong!");
+      print(e.toString());
+    }
+  }
 }

@@ -78,7 +78,6 @@ class _ContactsScreenState extends State<ContactsScreen> {
         child: const Icon(Icons.add),
       ),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         child: Container(
           padding: const EdgeInsets.all(15),
           child: Column(

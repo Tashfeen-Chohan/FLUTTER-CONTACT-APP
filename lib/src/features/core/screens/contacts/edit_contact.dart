@@ -4,6 +4,7 @@ import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/common/textfield_widget.dart';
 import 'package:login_app/src/constants/image_strings.dart';
 import 'package:login_app/src/features/core/models/contact_model.dart';
+import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
 import 'package:login_app/src/repository/contact_repository/contact_repository.dart';
 
 class EditContactScreen extends StatelessWidget {
@@ -38,7 +39,6 @@ class EditContactScreen extends StatelessWidget {
                         TextEditingController(text: contact.phoneNo);
                     final relationship =
                         TextEditingController(text: contact.relationship);
-                    print(fullName);
                     return Column(
                       children: [
                         const CircleAvatar(
@@ -75,7 +75,18 @@ class EditContactScreen extends StatelessWidget {
                               const SizedBox(height: 30),
                               ElevatedButtonWidget(
                                 text: "Edit",
-                                onPressed: () {},
+                                onPressed: () async {
+                                  final updatedContact = ContactModel(
+                                    id: contactId,
+                                    fullName: fullName.text.trim(),
+                                    phoneNo: phoneNo.text.trim(),
+                                    relationship: relationship.text.trim(),
+                                    userId: contact.userId,
+                                  );
+                                  await controller
+                                      .updateContact(updatedContact);
+                                  Get.to(() => const ContactsScreen());
+                                },
                               ),
                             ],
                           ),

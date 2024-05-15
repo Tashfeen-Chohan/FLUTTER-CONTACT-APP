@@ -92,7 +92,7 @@ class ViewContactScreen extends StatelessWidget {
                               ),
                             );
                           },
-                        )
+                        ),
                       ],
                     );
                   } else if (snapshot.hasError) {
