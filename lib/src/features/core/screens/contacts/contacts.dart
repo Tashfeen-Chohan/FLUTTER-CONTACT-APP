@@ -5,6 +5,7 @@ import 'package:login_app/src/common/side_drawer.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/core/models/contact_model.dart';
 import 'package:login_app/src/features/core/screens/contacts/new_contact.dart';
+import 'package:login_app/src/features/core/screens/contacts/view_contact.dart';
 import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 import 'package:login_app/src/repository/contact_repository/contact_repository.dart';
@@ -132,70 +133,77 @@ class SingleContactWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.blue.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(10.0),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black.withOpacity(0.1),
-        //     spreadRadius: 1,
-        //     blurRadius: 1,
-        //     offset: const Offset(0, 3),
-        //   ),
-        // ],
+    return InkWell(
+      onTap: () => Get.to(
+        () => ViewContactScreen(
+          contactId: data.id!,
+        ),
       ),
-      child: Column(
-        children: [
-          Container(
-            height: 70,
-            width: 70,
-            decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(100)),
-            child: Center(
-                child: Text(
-              data.fullName[0],
-              style: const TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-                fontSize: 30,
-              ),
-            )),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            data.fullName,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          Text(
-            data.phoneNo,
-            style: const TextStyle(
-              color: Colors.black87,
-            ),
-          ),
-          const SizedBox(height: 10),
-          data.relationship != null
-              ? Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  decoration: BoxDecoration(
-                    color: Colors.blue.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: Colors.blue.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10.0),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.black.withOpacity(0.1),
+          //     spreadRadius: 1,
+          //     blurRadius: 1,
+          //     offset: const Offset(0, 3),
+          //   ),
+          // ],
+        ),
+        child: Column(
+          children: [
+            Container(
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(100)),
+              child: Center(
                   child: Text(
-                    data.relationship!,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                )
-              : const SizedBox(),
-        ],
+                data.fullName[0],
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              )),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              data.fullName,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
+            Text(
+              data.phoneNo,
+              style: const TextStyle(
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(height: 10),
+            data.relationship != null
+                ? Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Text(
+                      data.relationship!,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                : const SizedBox(),
+          ],
+        ),
       ),
     );
   }

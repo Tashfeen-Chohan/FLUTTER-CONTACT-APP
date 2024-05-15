@@ -12,6 +12,7 @@ class ContactRepository extends GetxController {
   Future<void> createContact(ContactModel contact) async {
     try {
       await _db.collection("Contacts").add(contact.toJson());
+
       Get.snackbar("Success", "Contact saved successfully!");
     } catch (e) {
       Get.snackbar("Error", "Something went wrong!");
@@ -24,8 +25,18 @@ class ContactRepository extends GetxController {
         .collection("Contacts")
         .where("UserId", isEqualTo: userId)
         .get();
+
     final contacts =
         snapshot.docs.map((e) => ContactModel.fromSnapshot(e)).toList();
     return contacts;
+  }
+
+  Future<ContactModel?> getContactDetails(String id) async {
+    final snapshot = await _db.collection("Contacts").doc(id).get();
+    if (snapshot.exists) {
+      return ContactModel.fromSnapshot(snapshot);
+    } else {
+      return null;
+    }
   }
 }
