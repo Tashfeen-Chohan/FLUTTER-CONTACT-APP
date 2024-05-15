@@ -23,6 +23,7 @@ class _NewContactScreenState extends State<NewContactScreen> {
   final _authRepo = Get.put(AuthRepository());
   // ignore: unused_field
   late final UserModel _user;
+  // String? _selectedRelationship;
 
   @override
   void initState() {
@@ -66,16 +67,16 @@ class _NewContactScreenState extends State<NewContactScreen> {
                   child: Column(
                     children: [
                       TextfieldWidget(
+                        controller: fullNameController,
+                        label: "FULL NAME *",
+                        hintText: "Full Name",
+                        prefixIcon: Icons.person_2,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Full Name is required!";
                           }
                           return null;
                         },
-                        controller: fullNameController,
-                        label: "FULL NAME *",
-                        hintText: "Full Name",
-                        prefixIcon: Icons.person_2,
                       ),
                       const SizedBox(
                         height: 15,
@@ -102,6 +103,31 @@ class _NewContactScreenState extends State<NewContactScreen> {
                         hintText: "Relationship",
                         prefixIcon: Icons.supervised_user_circle,
                       ),
+                      // DropdownButtonFormField<String>(
+                      //   value: _selectedRelationship,
+                      //   onChanged: (String? newValue) {
+                      //     setState(() {
+                      //       _selectedRelationship = newValue;
+                      //     });
+                      //   },
+                      //   items: <String>[
+                      //     'Family',
+                      //     'Friend',
+                      //     'Professional',
+                      //     'Other'
+                      //   ].map<DropdownMenuItem<String>>((String value) {
+                      //     return DropdownMenuItem<String>(
+                      //       value: value,
+                      //       child: Text(value),
+                      //     );
+                      //   }).toList(),
+                      //   decoration: const InputDecoration(
+                      //     border: OutlineInputBorder(),
+                      //     hintText: 'SELECT A RELATIONSHIP',
+                      //     labelText: 'RELATIONSHIP',
+                      //     prefixIcon: Icon(Icons.supervised_user_circle),
+                      //   ),
+                      // ),
                       const SizedBox(height: 30),
                       ElevatedButtonWidget(
                         text: "SAVE",

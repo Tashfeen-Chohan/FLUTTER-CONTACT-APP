@@ -46,7 +46,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
   Widget build(BuildContext context) {
     final contactRepo = Get.put(ContactRepository());
     if (_isLoading) {
-      return const SizedBox();
+      return const Scaffold(body: SizedBox());
     }
     return Scaffold(
       appBar: AppBar(

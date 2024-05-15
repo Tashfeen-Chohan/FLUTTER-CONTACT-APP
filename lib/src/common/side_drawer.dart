@@ -8,7 +8,6 @@ import 'package:login_app/src/features/auth/screens/signup/signup_screen.dart';
 import 'package:login_app/src/features/core/controller/profile_controller.dart';
 import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
 import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
-import 'package:login_app/src/features/core/screens/users/users_screen.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 
 class SideDrawer extends StatelessWidget {
@@ -41,8 +40,12 @@ class SideDrawer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const CircleAvatar(
-                                radius: 30,
-                                child: Image(image: AssetImage(tProfile))),
+                              radius: 30,
+                              child: Image(
+                                image: AssetImage(tProfile),
+                              ),
+                            ),
+                            const SizedBox(height: 5),
                             Text(
                               userData.fullName,
                               style: const TextStyle(
@@ -81,14 +84,6 @@ class SideDrawer extends StatelessWidget {
             leadingIcon: Icons.phone,
             title: "Contacts",
             onTap: () => Get.to(() => const ContactsScreen()),
-          ),
-          MenuTileWidget(
-            leadingIcon: Icons.group,
-            title: "Users",
-            onTap: () {
-              Navigator.pop(context);
-              Get.to(() => const UsersScreen());
-            },
           ),
           MenuTileWidget(
             leadingIcon: Icons.login_sharp,
