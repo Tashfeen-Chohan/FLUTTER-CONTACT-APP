@@ -77,8 +77,9 @@ class _ContactsScreenState extends State<ContactsScreen> {
         child: const Icon(Icons.add),
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
               const SizedBox(height: 30),
@@ -93,7 +94,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                             crossAxisCount: 2,
                             mainAxisSpacing: 8.0,
                             crossAxisSpacing: 8.0,
-                            childAspectRatio: 0.8,
+                            childAspectRatio: 0.85,
                           ),
                           shrinkWrap: true,
                           itemCount: snapshot.data!.length,
@@ -188,7 +189,10 @@ class SingleContactWidget extends StatelessWidget {
                     color: Colors.blue.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: Text(data.relationship!),
+                  child: Text(
+                    data.relationship!,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 )
               : const SizedBox(),
         ],
