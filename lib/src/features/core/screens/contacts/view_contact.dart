@@ -86,7 +86,11 @@ class ViewContactScreen extends StatelessWidget {
                         ElevatedButtonWidget(
                           text: "Edit Contact",
                           onPressed: () {
-                            Get.to(() => const EditContactScreen());
+                            Get.to(
+                              () => EditContactScreen(
+                                contactId: contactId,
+                              ),
+                            );
                           },
                         )
                       ],
