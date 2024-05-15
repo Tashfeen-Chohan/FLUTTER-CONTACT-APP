@@ -7,7 +7,6 @@ import 'package:login_app/src/features/auth/screens/login/login_screen.dart';
 import 'package:login_app/src/features/auth/screens/signup/signup_screen.dart';
 import 'package:login_app/src/features/core/controller/profile_controller.dart';
 import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
-import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
 import 'package:login_app/src/features/core/screens/users/users_screen.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
@@ -33,20 +32,30 @@ class SideDrawer extends StatelessWidget {
                     if (snapshot.hasData) {
                       UserModel userData = snapshot.data as UserModel;
 
-                      return UserAccountsDrawerHeader(
+                      return Container(
                         decoration: const BoxDecoration(
-                            // color: tAccentColor.withOpacity(0.6),
-                            color: Colors.blue),
-                        accountName: Text(
-                          userData.fullName,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
+                          color: Colors.blue,
                         ),
-                        accountEmail: Text(userData.email),
-                        currentAccountPicture: const CircleAvatar(
-                          radius: 20,
-                          backgroundImage: AssetImage(tProfile),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const CircleAvatar(
+                                radius: 30,
+                                child: Image(image: AssetImage(tProfile))),
+                            Text(
+                              userData.fullName,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              userData.email,
+                              style: const TextStyle(color: Colors.white),
+                            )
+                          ],
                         ),
                       );
                     } else {
@@ -69,28 +78,10 @@ class SideDrawer extends StatelessWidget {
             ),
           ),
           MenuTileWidget(
-            leadingIcon: Icons.home,
-            title: "Dashboard",
-            onTap: () => Get.to(() => const Dashboard()),
-          ),
-          MenuTileWidget(
             leadingIcon: Icons.phone,
             title: "Contacts",
             onTap: () => Get.to(() => const ContactsScreen()),
           ),
-          // MenuTileWidget(
-          //   leadingIcon: Icons.edit_calendar_outlined,
-          //   title: "Edit Contact",
-          //   onTap: () => Get.to(() => const EditContactScreen()),
-          // ),
-          // MenuTileWidget(
-          //   leadingIcon: Icons.contact_emergency,
-          //   title: "View Contact",
-          //   onTap: () {
-          //     Navigator.pop(context);
-          //     Get.to(() => const ViewContactScreen());
-          //   },
-          // ),
           MenuTileWidget(
             leadingIcon: Icons.group,
             title: "Users",
@@ -114,6 +105,7 @@ class SideDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Get.to(() => const SignupScreen());
               }),
+          const Divider(),
           MenuTileWidget(
               leadingIcon: Icons.settings,
               title: "Settings",
@@ -121,7 +113,6 @@ class SideDrawer extends StatelessWidget {
                 Navigator.pop(context);
                 Get.to(() => const ProfileScreen());
               }),
-          const Divider(),
           MenuTileWidget(
             leadingIcon: Icons.logout,
             title: "Logout",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_app/src/common/bottom_navbar.dart';
+import 'package:login_app/src/common/bottom_nav.dart';
 import 'package:login_app/src/common/side_drawer.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/core/models/contact_model.dart';
@@ -70,7 +70,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
         ],
       ),
       drawer: const SideDrawer(),
-      bottomNavigationBar: const MyBottonNavbar(),
+      bottomNavigationBar: MyBottomNav(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,

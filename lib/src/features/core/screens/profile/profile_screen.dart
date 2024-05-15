@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:login_app/src/common/bottom_nav.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/profile_header.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/menu_widget.dart';
 import 'package:login_app/src/features/core/screens/users/users_screen.dart';
@@ -27,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      // bottomNavigationBar: const MyBottonNavbar(),
+      bottomNavigationBar: MyBottomNav(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(30),
