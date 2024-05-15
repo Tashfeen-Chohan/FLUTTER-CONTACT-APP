@@ -80,7 +80,10 @@ class EditContactScreen extends StatelessWidget {
                                     id: contactId,
                                     fullName: fullName.text.trim(),
                                     phoneNo: phoneNo.text.trim(),
-                                    relationship: relationship.text.trim(),
+                                    relationship:
+                                        relationship.text.trim().isEmpty
+                                            ? null
+                                            : relationship.text.trim(),
                                     userId: contact.userId,
                                   );
                                   await controller
@@ -91,22 +94,76 @@ class EditContactScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: TextButton(
-                              onPressed: () {},
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Dont' need this contact anymore?"),
+                            TextButton(
+                              onPressed: () async {
+                                bool? confirmed = await showDialog<bool>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Confirm Deletion'),
+                                      content: const Text(
+                                          'Are you sure you want to delete this contact?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(false);
+                                          },
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(true);
+                                          },
+                                          child: const Text(
+                                            'Delete',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+
+                                if (confirmed == true) {
+                                  controller.deleteContact(contactId);
+                                  Get.to(() => const ContactsScreen());
+                                }
+                              },
                               child: const Text(
-                                "Delete contact",
+                                "Delete!",
                                 style: TextStyle(
                                   color: Colors.red,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                          ),
-                        ),
+                          ],
+                        )
+                        // Align(
+                        //   alignment: Alignment.centerRight,
+                        //   child: TextButton(
+                        //     onPressed: () {},
+                        //     child: TextButton(
+                        //       onPressed: () async {
+                        //         controller.deleteContact(contactId);
+                        //         Get.to(() => const ContactsScreen());
+                        //       },
+                        //       child: const Text(
+                        //         "Delete contact",
+                        //         style: TextStyle(
+                        //           color: Colors.red,
+                        //           fontWeight: FontWeight.bold,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     );
                   } else if (snapshot.hasError) {

@@ -49,4 +49,13 @@ class ContactRepository extends GetxController {
       print(e.toString());
     }
   }
+
+  Future<void> deleteContact (String id) async {
+    try {
+      await _db.collection("Contacts").doc(id).delete();
+      Get.snackbar("Success", "Contact deleted successfully!");
+    } catch (e) {
+      Get.snackbar("Error", "Something went wrong!");
+    }
+  }
 }
