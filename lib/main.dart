@@ -9,7 +9,6 @@ import 'package:login_app/src/features/auth/screens/forget_password/forget_passw
 import 'package:login_app/src/features/auth/screens/login/login_screen.dart';
 import 'package:login_app/src/features/auth/screens/on_boarding/on_boarding_screen.dart';
 import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
-import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 import 'package:login_app/src/utils/theme/theme.dart';
 
@@ -35,7 +34,6 @@ class MyApp extends StatelessWidget {
       theme: MyAppTheme.lightTheme,
       darkTheme: MyAppTheme.darkTheme,
       themeMode: ThemeMode.light,
-
       debugShowCheckedModeBanner: false,
       home: const Center(child: CircularProgressIndicator()),
     );

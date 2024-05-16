@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:login_app/src/constants/image_strings.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/update_profile_form.dart';
 
-class UpdateProfile extends StatelessWidget {
-  const UpdateProfile({super.key});
+class UpdateProfileScreen extends StatelessWidget {
+  const UpdateProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

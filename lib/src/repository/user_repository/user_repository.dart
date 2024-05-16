@@ -47,6 +47,16 @@ class UserRepository extends GetxController {
     try {
       // Delete user from Firebase Authentication
       await _authRepo.deleteUserAccount();
+      // Get all contacts of the user
+      QuerySnapshot contactsSnapshot = await _db
+          .collection('Contacts')
+          .where('UserId', isEqualTo: user.id)
+          .get();
+
+      // Delete each contact document
+      for (QueryDocumentSnapshot doc in contactsSnapshot.docs) {
+        await doc.reference.delete();
+      }
       // Delete user's document from Firestore collection
       await _db.collection('Users').doc(user.id).delete();
       Get.snackbar("Success", "Record deleted successfully!");
@@ -59,6 +69,16 @@ class UserRepository extends GetxController {
 
   Future<void> deleteOtherUser(UserModel user) async {
     try {
+      // Get all contacts of the user
+      QuerySnapshot contactsSnapshot = await _db
+          .collection('Contacts')
+          .where('UserId', isEqualTo: user.id)
+          .get();
+
+      // Delete each contact document
+      for (QueryDocumentSnapshot doc in contactsSnapshot.docs) {
+        await doc.reference.delete();
+      }
       // Delete user's document from Firestore collection
       await _db.collection('Users').doc(user.id).delete();
       Get.snackbar("Success", "Record deleted successfully!");

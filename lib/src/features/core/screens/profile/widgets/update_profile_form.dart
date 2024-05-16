@@ -5,6 +5,7 @@ import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/common/textfield_widget.dart';
 import 'package:login_app/src/features/auth/model/user_model.dart';
 import 'package:login_app/src/features/core/controller/profile_controller.dart';
+import 'package:login_app/src/features/core/screens/profile/profile_screen.dart';
 
 class UpdateProfileForm extends StatelessWidget {
   const UpdateProfileForm({
@@ -69,6 +70,7 @@ class UpdateProfileForm extends StatelessWidget {
                               timestamp: userData.timestamp,
                             );
                             await controller.updateRecord(updatedData);
+                            Get.to(() => const ProfileScreen());
                           },
                         ),
                       ],

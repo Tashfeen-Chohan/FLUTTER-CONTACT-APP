@@ -67,7 +67,7 @@ class ProfileHeaderWidget extends StatelessWidget {
                       ElevatedButtonWidget(
                         text: "Edit Profile",
                         width: 150,
-                        onPressed: () => Get.to(() => const UpdateProfile()),
+                        onPressed: () => Get.to(() => const UpdateProfileScreen()),
                       ),
                     ],
                   );

@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
-import 'package:login_app/src/features/core/screens/dashboard/dashboard.dart';
 import 'package:login_app/src/repository/auth_repository/exceptions/login_failure.dart';
 import 'package:login_app/src/repository/auth_repository/exceptions/signup_email_password_failure.dart';
 
@@ -34,11 +33,10 @@ class AuthRepository extends GetxController {
         email: email,
         password: password,
       );
-      // final userRepo = Get.put(UserRepository());
-      // await userRepo.getUserDetails(email);
+      
       Get.snackbar("Success", "Signup Successfully");
       firebaseUser.value != null
-          ? Get.offAll(() => const Dashboard())
+          ? Get.offAll(() => const ContactsScreen())
           : Get.offAll(() => const WelcomeScreen());
     } on FirebaseAuthException catch (e) {
       final ex = SignUpWithEmailAndPasswordFailure.code(e.code);

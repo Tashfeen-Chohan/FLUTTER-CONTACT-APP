@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/features/core/models/contact_model.dart';
+import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
 import 'package:login_app/src/features/core/screens/contacts/edit_contact.dart';
 import 'package:login_app/src/repository/contact_repository/contact_repository.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,7 +29,7 @@ class ViewContactScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Center(
           child: Container(
-            padding: const EdgeInsets.all(30),
+            padding: const EdgeInsets.symmetric(horizontal: 30),
             child: FutureBuilder(
               future: controller.getContactDetails(contactId),
               builder: (context, snapshot) {
@@ -66,6 +67,7 @@ class ViewContactScreen extends StatelessWidget {
                         // CONTACT DETAILS DATA
 
                         const SizedBox(height: 20),
+                        // PHONE & SMS
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -155,7 +157,7 @@ class ViewContactScreen extends StatelessWidget {
                                 title: contact.relationship!,
                               )
                             : const SizedBox(),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         ElevatedButtonWidget(
                           text: "Edit Contact",
                           onPressed: () {
@@ -166,6 +168,57 @@ class ViewContactScreen extends StatelessWidget {
                             );
                           },
                         ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Dont' need this contact anymore?"),
+                            TextButton(
+                              onPressed: () async {
+                                bool? confirmed = await showDialog<bool>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: const Text('Confirm Deletion'),
+                                      content: const Text(
+                                          'Are you sure you want to delete this contact?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(false);
+                                          },
+                                          child: const Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop(true);
+                                          },
+                                          child: const Text(
+                                            'Delete',
+                                            style: TextStyle(color: Colors.red),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+
+                                if (confirmed == true) {
+                                  controller.deleteContact(contactId);
+                                  Get.to(() => const ContactsScreen());
+                                }
+                              },
+                              child: const Text(
+                                "Delete!",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
                       ],
                     );
                   } else if (snapshot.hasError) {
