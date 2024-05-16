@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       theme: MyAppTheme.lightTheme,
       darkTheme: MyAppTheme.darkTheme,
       themeMode: ThemeMode.light,
+
       debugShowCheckedModeBanner: false,
       home: const Center(child: CircularProgressIndicator()),
     );

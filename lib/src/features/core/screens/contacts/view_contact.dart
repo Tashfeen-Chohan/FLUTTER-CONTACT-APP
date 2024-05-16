@@ -4,6 +4,7 @@ import 'package:login_app/src/common/elevated_button_widget.dart';
 import 'package:login_app/src/features/core/models/contact_model.dart';
 import 'package:login_app/src/features/core/screens/contacts/edit_contact.dart';
 import 'package:login_app/src/repository/contact_repository/contact_repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ViewContactScreen extends StatelessWidget {
   const ViewContactScreen({
@@ -64,7 +65,70 @@ class ViewContactScreen extends StatelessWidget {
 
                         // CONTACT DETAILS DATA
 
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            GestureDetector(
+                              onTap: () async {
+                                final formatNumber =
+                                    "+92${contact.phoneNo.substring(1)}";
+                                final Uri url =
+                                    Uri(scheme: "tel", path: formatNumber);
+                                if (await canLaunchUrl(url)) {
+                                  await launchUrl(url);
+                                } else {
+                                  // ignore: avoid_print
+                                  print("can't launch");
+                                }
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                    child: const Icon(
+                                      Icons.phone,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    "Call",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue.withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                  child: const Icon(
+                                    Icons.message,
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                const Text(
+                                  "Text",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 20),
                         ContactDetailsWidget(
                           icon: Icons.person_2_outlined,
                           title: contact.fullName,

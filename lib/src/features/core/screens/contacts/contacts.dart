@@ -88,7 +88,34 @@ class _ContactsScreenState extends State<ContactsScreen> {
                 future: contactRepo.getUserContacts(_user!.id),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    if (snapshot.hasData) {
+                    if (snapshot.data!.isEmpty) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.contacts,
+                                size: 100, color: Colors.blue),
+                            const SizedBox(height: 20),
+                            const Text('No contacts available',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.grey)),
+                            const SizedBox(height: 20),
+                            ElevatedButton(
+                              onPressed: () {
+                                Get.to(() => const NewContactScreen());
+                              },
+                              child: const Text(
+                                "Add New Contact",
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text(snapshot.error.toString());
+                    } else {
                       return GridView.builder(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
@@ -103,10 +130,6 @@ class _ContactsScreenState extends State<ContactsScreen> {
                             final data = snapshot.data![index];
                             return SingleContactWidget(data: data);
                           });
-                    } else if (snapshot.hasError) {
-                      return Text(snapshot.error.toString());
-                    } else {
-                      return const Text("Something went wrong!");
                     }
                   } else {
                     return const Center(
