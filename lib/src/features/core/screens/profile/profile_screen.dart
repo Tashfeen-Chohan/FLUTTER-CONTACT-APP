@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_app/src/common/bottom_nav.dart';
+import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
+import 'package:login_app/src/features/core/screens/contacts/new_contact.dart';
+import 'package:login_app/src/features/core/screens/profile/update_profile.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/profile_header.dart';
 import 'package:login_app/src/features/core/screens/profile/widgets/menu_widget.dart';
 import 'package:login_app/src/features/core/screens/users/users_screen.dart';
@@ -36,15 +39,20 @@ class ProfileScreen extends StatelessWidget {
             children: [
               const ProfileHeaderWidget(),
               // MENU
+
               ProfileMenuWidget(
-                icon: Icons.settings,
-                title: "Settings",
-                onTap: () {},
+                icon: Icons.add,
+                title: "New Contact",
+                onTap: () {
+                  Get.to(() => const NewContactScreen());
+                },
               ),
               ProfileMenuWidget(
-                icon: Icons.money,
-                title: "Billing Details",
-                onTap: () {},
+                icon: Icons.phone,
+                title: "Contacts",
+                onTap: () {
+                  Get.to(() => const ContactsScreen());
+                },
               ),
               ProfileMenuWidget(
                 icon: Icons.supervised_user_circle_sharp,
@@ -55,9 +63,11 @@ class ProfileScreen extends StatelessWidget {
               ),
               const Divider(),
               ProfileMenuWidget(
-                icon: Icons.info,
-                title: "Information",
-                onTap: () {},
+                icon: Icons.settings,
+                title: "Settings",
+                onTap: () {
+                  Get.to(() => const UpdateProfile());
+                },
               ),
               ProfileMenuWidget(
                 icon: Icons.logout_outlined,

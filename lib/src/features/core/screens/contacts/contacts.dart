@@ -42,11 +42,10 @@ class _ContactsScreenState extends State<ContactsScreen> {
       });
     }
   }
-  
 
   @override
   Widget build(BuildContext context) {
-  final contactRepo = Get.put(ContactRepository());
+    final contactRepo = Get.put(ContactRepository());
     if (_isLoading) {
       return const Scaffold(body: SizedBox());
     }
@@ -80,33 +79,16 @@ class _ContactsScreenState extends State<ContactsScreen> {
         child: const Icon(Icons.add),
       ),
       body: SingleChildScrollView(
-        child: Container(
+        child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              // const SizedBox(height: 10),
-              // TextField(
-              //   controller: searchController,
-              //   // onChanged: (value) {
-              //   //   _filteredContacts = _contacts
-              //   //       .where((contact) => contact.fullName
-              //   //           .toLowerCase()
-              //   //           .contains(value.toLowerCase()))
-              //   //       .toList();
-              //   //   setState(() {});
-              //   // },
-              //   decoration: const InputDecoration(
-              //       prefixIcon: Icon(Icons.search), hintText: "Search by name"
-              //       // border: OutlineInputBorder(),
-              //       ),
-              // ),
               const SizedBox(height: 20),
               FutureBuilder<List<ContactModel>>(
                 future: contactRepo.getUserContacts(_user!.id),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      
                       return GridView.builder(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(

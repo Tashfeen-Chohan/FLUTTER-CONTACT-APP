@@ -23,7 +23,10 @@ class _NewContactScreenState extends State<NewContactScreen> {
   final _authRepo = Get.put(AuthRepository());
   // ignore: unused_field
   late final UserModel _user;
-  // String? _selectedRelationship;
+  String? _selectedRelationship;
+  final fullNameController = TextEditingController();
+  final phoneNoController = TextEditingController();
+  final relationshipController = TextEditingController();
 
   @override
   void initState() {
@@ -44,9 +47,7 @@ class _NewContactScreenState extends State<NewContactScreen> {
   @override
   Widget build(BuildContext context) {
     final contactRepo = Get.put(ContactRepository());
-    final fullNameController = TextEditingController();
-    final phoneNoController = TextEditingController();
-    final relationshipController = TextEditingController();
+
     final formKey = GlobalKey<FormState>();
     return Scaffold(
       body: SingleChildScrollView(
@@ -97,37 +98,37 @@ class _NewContactScreenState extends State<NewContactScreen> {
                         },
                       ),
                       const SizedBox(height: 15),
-                      TextfieldWidget(
-                        controller: relationshipController,
-                        label: "RELATIONSHIP",
-                        hintText: "Relationship",
-                        prefixIcon: Icons.supervised_user_circle,
-                      ),
-                      // DropdownButtonFormField<String>(
-                      //   value: _selectedRelationship,
-                      //   onChanged: (String? newValue) {
-                      //     setState(() {
-                      //       _selectedRelationship = newValue;
-                      //     });
-                      //   },
-                      //   items: <String>[
-                      //     'Family',
-                      //     'Friend',
-                      //     'Professional',
-                      //     'Other'
-                      //   ].map<DropdownMenuItem<String>>((String value) {
-                      //     return DropdownMenuItem<String>(
-                      //       value: value,
-                      //       child: Text(value),
-                      //     );
-                      //   }).toList(),
-                      //   decoration: const InputDecoration(
-                      //     border: OutlineInputBorder(),
-                      //     hintText: 'SELECT A RELATIONSHIP',
-                      //     labelText: 'RELATIONSHIP',
-                      //     prefixIcon: Icon(Icons.supervised_user_circle),
-                      //   ),
+                      // TextfieldWidget(
+                      //   controller: relationshipController,
+                      //   label: "RELATIONSHIP",
+                      //   hintText: "Relationship",
+                      //   prefixIcon: Icons.supervised_user_circle,
                       // ),
+                      DropdownButtonFormField<String>(
+                        value: _selectedRelationship,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            _selectedRelationship = newValue;
+                          });
+                        },
+                        items: <String>[
+                          'Family',
+                          'Friend',
+                          'Professional',
+                          'Other'
+                        ].map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'SELECT A RELATIONSHIP',
+                          labelText: 'RELATIONSHIP',
+                          prefixIcon: Icon(Icons.supervised_user_circle),
+                        ),
+                      ),
                       const SizedBox(height: 30),
                       ElevatedButtonWidget(
                         text: "SAVE",
@@ -136,10 +137,7 @@ class _NewContactScreenState extends State<NewContactScreen> {
                             final contact = ContactModel(
                               fullName: fullNameController.text.trim(),
                               phoneNo: phoneNoController.text.trim(),
-                              relationship:
-                                  relationshipController.text.trim().isEmpty
-                                      ? null
-                                      : relationshipController.text.trim(),
+                              relationship: _selectedRelationship ?? '',
                               userId: _user.id!,
                             );
                             await contactRepo.createContact(contact);
