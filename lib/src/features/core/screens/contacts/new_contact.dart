@@ -137,7 +137,8 @@ class _NewContactScreenState extends State<NewContactScreen> {
                             final contact = ContactModel(
                               fullName: fullNameController.text.trim(),
                               phoneNo: phoneNoController.text.trim(),
-                              relationship: _selectedRelationship ?? '',
+                              // ignore: unnecessary_null_in_if_null_operators
+                              relationship: _selectedRelationship ?? null,
                               userId: _user.id!,
                             );
                             await contactRepo.createContact(contact);

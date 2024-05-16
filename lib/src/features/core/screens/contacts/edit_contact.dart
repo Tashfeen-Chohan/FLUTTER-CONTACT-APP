@@ -7,11 +7,19 @@ import 'package:login_app/src/features/core/models/contact_model.dart';
 import 'package:login_app/src/features/core/screens/contacts/contacts.dart';
 import 'package:login_app/src/repository/contact_repository/contact_repository.dart';
 
-class EditContactScreen extends StatelessWidget {
+class EditContactScreen extends StatefulWidget {
   const EditContactScreen({super.key, required this.contactId});
 
   final String contactId;
 
+  @override
+  State<EditContactScreen> createState() => _EditContactScreenState();
+}
+
+class _EditContactScreenState extends State<EditContactScreen> {
+  final fullName = TextEditingController();
+  final phoneNo = TextEditingController();
+  String? relationship;
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ContactRepository());
@@ -28,17 +36,15 @@ class EditContactScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(30),
             child: FutureBuilder(
-              future: controller.getContactDetails(contactId),
+              future: controller.getContactDetails(widget.contactId),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
                     ContactModel contact = snapshot.data as ContactModel;
-                    final fullName =
-                        TextEditingController(text: contact.fullName);
-                    final phoneNo =
-                        TextEditingController(text: contact.phoneNo);
-                    final relationship =
-                        TextEditingController(text: contact.relationship);
+                    fullName.text = contact.fullName;
+                    phoneNo.text = contact.phoneNo;
+                    relationship = contact.relationship ?? "";
+
                     return Column(
                       children: [
                         const CircleAvatar(
@@ -64,12 +70,39 @@ class EditContactScreen extends StatelessWidget {
                                 prefixIcon: Icons.phone_enabled_outlined,
                               ),
                               const SizedBox(height: 15),
-                              relationship.text != ""
-                                  ? TextfieldWidget(
-                                      controller: relationship,
-                                      label: "RELATIONSHIP",
-                                      hintText: "Relationship",
-                                      prefixIcon: Icons.supervised_user_circle,
+                              // relationship.text != ""
+                              //     ? TextfieldWidget(
+                              //         controller: relationship,
+                              //         label: "RELATIONSHIP",
+                              //         hintText: "Relationship",
+                              //         prefixIcon: Icons.supervised_user_circle,
+                              //       )
+                              //     : const SizedBox(),
+                              relationship != ""
+                                  ? DropdownButtonFormField<String>(
+                                      value: relationship ?? "",
+                                      onChanged: (String? newValue) {
+                                        relationship = newValue;
+                                      },
+                                      items: <String>[
+                                        'Family',
+                                        'Friend',
+                                        'Professional',
+                                        'Other'
+                                      ].map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                        return DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        hintText: 'SELECT A RELATIONSHIP',
+                                        labelText: 'RELATIONSHIP',
+                                        prefixIcon:
+                                            Icon(Icons.supervised_user_circle),
+                                      ),
                                     )
                                   : const SizedBox(),
                               const SizedBox(height: 30),
@@ -77,13 +110,15 @@ class EditContactScreen extends StatelessWidget {
                                 text: "Edit",
                                 onPressed: () async {
                                   final updatedContact = ContactModel(
-                                    id: contactId,
+                                    id: widget.contactId,
                                     fullName: fullName.text.trim(),
                                     phoneNo: phoneNo.text.trim(),
-                                    relationship:
-                                        relationship.text.trim().isEmpty
-                                            ? null
-                                            : relationship.text.trim(),
+                                    // ignore: unnecessary_null_in_if_null_operators
+                                    relationship: relationship ?? null,
+                                    // relationship:
+                                    //     relationship.text.trim().isEmpty
+                                    //         ? null
+                                    //         : relationship.text.trim(),
                                     userId: contact.userId,
                                   );
                                   await controller
@@ -130,7 +165,7 @@ class EditContactScreen extends StatelessWidget {
                                 );
 
                                 if (confirmed == true) {
-                                  controller.deleteContact(contactId);
+                                  controller.deleteContact(widget.contactId);
                                   Get.to(() => const ContactsScreen());
                                 }
                               },
