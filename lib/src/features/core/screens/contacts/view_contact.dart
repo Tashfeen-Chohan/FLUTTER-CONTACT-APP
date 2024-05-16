@@ -77,9 +77,6 @@ class ViewContactScreen extends StatelessWidget {
                                     Uri(scheme: "tel", path: formatNumber);
                                 if (await canLaunchUrl(url)) {
                                   await launchUrl(url);
-                                } else {
-                                  // ignore: avoid_print
-                                  print("can't launch");
                                 }
                               },
                               child: Column(
@@ -105,26 +102,38 @@ class ViewContactScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Column(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue.withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(100),
+                            GestureDetector(
+                              onTap: () async {
+                                final formatNumber =
+                                    "+92${contact.phoneNo.substring(1)}";
+                                final Uri url =
+                                    Uri(scheme: "sms", path: formatNumber);
+                                if (await canLaunchUrl(url)) {
+                                  await launchUrl(url);
+                                }
+                              },
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(100),
+                                    ),
+                                    child: const Icon(
+                                      Icons.message,
+                                      color: Colors.blue,
+                                    ),
                                   ),
-                                  child: const Icon(
-                                    Icons.message,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                const Text(
-                                  "Text",
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                )
-                              ],
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    "Text",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
