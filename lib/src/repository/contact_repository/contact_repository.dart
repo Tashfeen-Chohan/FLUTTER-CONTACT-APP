@@ -50,7 +50,7 @@ class ContactRepository extends GetxController {
     }
   }
 
-  Future<void> deleteContact (String id) async {
+  Future<void> deleteContact(String id) async {
     try {
       await _db.collection("Contacts").doc(id).delete();
       Get.snackbar("Success", "Contact deleted successfully!");

@@ -10,11 +10,11 @@ class WelcomeIntroWidget extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "Build Awesome Apps",
+          "Personal Contact Hub",
           style: Theme.of(context).textTheme.headlineLarge,
         ),
         const Text(
-          "Lets put your creativity on the development highway",
+          "Manage and Access Contacts Anytime, Anywhere",
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.bold),
         )

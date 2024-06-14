@@ -7,7 +7,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:login_app/firebase_options.dart';
 import 'package:login_app/src/features/auth/screens/forget_password/forget_password_otp/otp_screen.dart';
 import 'package:login_app/src/features/auth/screens/login/login_screen.dart';
-import 'package:login_app/src/features/auth/screens/on_boarding/on_boarding_screen.dart';
 import 'package:login_app/src/features/auth/screens/welcome/welcome_screen.dart';
 import 'package:login_app/src/repository/auth_repository/auth_repo.dart';
 import 'package:login_app/src/utils/theme/theme.dart';
@@ -19,7 +18,6 @@ void main() async {
       AuthRepository(),
     ),
   );
-  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -40,62 +38,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Home Page",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-        ),
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: ListView(
-          children: [
-            Text(
-              "Heading",
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            Text(
-              "Sub Heading",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(
-              "Paragraph",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, foregroundColor: Colors.white),
-              child: const Text("Elevated Button"),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(foregroundColor: Colors.blue),
-              child: const Text("Outline Button"),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
